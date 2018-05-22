@@ -3,6 +3,8 @@ package br.com.accera.internaltimesheet;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.joaquimley.faboptions.FabOptions;
+
 public class DashboardActivity extends AppCompatActivity {
 
     @Override

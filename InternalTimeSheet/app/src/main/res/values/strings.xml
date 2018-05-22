@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">InternalTimeSheet</string>
+    <string name="entry_time">Hora de Entrada: </string>
+    <string name="out_time">Hora de Saida: </string>
+    <string name="general">Visão Geral</string>
+    <string name="hour_bank">Banco de Horas</string>
+    <string name="inicio_da_contagem">Inicio do Ciclo:</string>
+    <string name="fim_da_contagem">Fim do Ciclo:</string>
+    <string name="dias_restantes">Dias Restantes:</string>
+    <string name="saldo_do_dia">Saldo do Dia:</string>
+    <string name="informa_es_adicionais">Informações Adicionais</string>
 </resources>
