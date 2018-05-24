@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/grey"
-    tools:context=".DashboardActivity">
+    tools:context=".ui.dashboard.DashboardActivity">
 
     <android.support.design.widget.CollapsingToolbarLayout
         android:layout_width="match_parent"

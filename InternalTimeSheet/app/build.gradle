@@ -61,6 +61,7 @@ dependencies {
 
     // Dagger
     annotationProcessor globalDependencies.daggerKotlinCompile
+    annotationProcessor globalDependencies.dagger2SupportCompile
 
     // Fabric
     implementation(globalDependencies.fabricCrashlytics) {

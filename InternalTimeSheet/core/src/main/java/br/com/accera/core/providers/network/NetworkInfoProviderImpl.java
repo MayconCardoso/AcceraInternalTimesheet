@@ -5,6 +5,8 @@ import android.net.Network;
 import android.net.NetworkInfo;
 import android.os.Build;
 
+import javax.inject.Inject;
+
 /**
  * The type Network info provider.
  *
@@ -19,6 +21,7 @@ public class NetworkInfoProviderImpl implements NetworkInfoProvider {
      *
      * @param connectivityManager the connectivity manager
      */
+    @Inject
     public NetworkInfoProviderImpl( ConnectivityManager connectivityManager) {
         this.connectivityManager = connectivityManager;
     }

@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.support.annotation.CallSuper;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.Toolbar;
 import android.util.SparseArray;
@@ -20,6 +19,7 @@ import br.com.accera.core.presentation.flow.FlowNavigatorDelegate;
 import br.com.accera.core.presentation.ui.helpers.alert.AlertHelper;
 import br.com.accera.core.presentation.ui.helpers.resource.ResourceHelper;
 import br.com.accera.core.presentation.ui.helpers.view.ViewHelper;
+import dagger.android.support.DaggerAppCompatActivity;
 import io.reactivex.SingleEmitter;
 
 /**
@@ -29,7 +29,7 @@ import io.reactivex.SingleEmitter;
  * @param <PRESENTER> the type parameter
  * @author MAYCON CARDOSO on 15/05/2018.
  */
-public abstract class BaseActivity<VIEW extends BaseMvpContract.View, PRESENTER extends BaseMvpContract.Presenter<VIEW>> extends AppCompatActivity implements BaseMvpContract.View, FlowNavigatorDelegate {
+public abstract class BaseActivity<VIEW extends BaseMvpContract.View, PRESENTER extends BaseMvpContract.Presenter<VIEW>> extends DaggerAppCompatActivity implements BaseMvpContract.View, FlowNavigatorDelegate {
 
     //==============================================================================================
     // OBJECTS
