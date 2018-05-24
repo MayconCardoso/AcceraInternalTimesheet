@@ -1,8 +1,10 @@
 package br.com.accera.core.presentation.ui.helpers.view;
 
+import android.content.Context;
 import android.view.View;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import br.com.accera.core.presentation.ui.baseview.BaseActivity;
 import br.com.accera.core.presentation.ui.helpers.base.BaseUiHelper;
@@ -25,7 +27,7 @@ public class ViewHelperImpl extends BaseUiHelper implements ViewHelper {
      * @param activity the activity
      */
     @Inject
-    public ViewHelperImpl( BaseActivity activity ) {
+    public ViewHelperImpl( @Named("ViewContext") Context activity ) {
         super( activity );
     }
 

@@ -1,10 +1,12 @@
 package br.com.accera.core.presentation.ui.helpers.alert;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import br.com.accera.core.R;
 import br.com.accera.core.presentation.ui.baseview.BaseActivity;
@@ -40,7 +42,7 @@ public class NativeAlertHelperImpl extends BaseUiHelper implements AlertHelper {
      * @param resourceHelper the resource helper
      */
     @Inject
-    public NativeAlertHelperImpl( BaseActivity activity, ResourceHelper resourceHelper ) {
+    public NativeAlertHelperImpl(@Named("ViewContext") Context activity, ResourceHelper resourceHelper ) {
         super( activity );
         mResourceHelper = resourceHelper;
     }

@@ -1,5 +1,9 @@
 package br.com.accera.core.presentation.di.module;
 
+import android.content.Context;
+
+import javax.inject.Named;
+
 import br.com.accera.core.presentation.di.scope.ViewScope;
 import br.com.accera.core.presentation.flow.FlowNavigatorDelegate;
 import br.com.accera.core.presentation.ui.baseview.BaseActivity;
@@ -9,6 +13,7 @@ import br.com.accera.core.presentation.ui.helpers.resource.ResourceHelper;
 import br.com.accera.core.presentation.ui.helpers.resource.ResourceHelperImpl;
 import br.com.accera.core.presentation.ui.helpers.view.ViewHelper;
 import br.com.accera.core.presentation.ui.helpers.view.ViewHelperImpl;
+import dagger.Binds;
 import dagger.Module;
 import dagger.Provides;
 
@@ -16,61 +21,31 @@ import dagger.Provides;
  * @author MAYCON CARDOSO on 14/05/2018.
  */
 @Module
-public class CoreSuggestionViewUtilModule {
-    //==============================================================================================
-    // OBJETOS
-    //==============================================================================================
-    private BaseActivity mBaseActivity;
+public abstract class CoreSuggestionViewUtilModule {
 
-    //==============================================================================================
-    //
-    //
-    //
-    //
-    //==============================================================================================
-    // CONSTRUTORES
-    //==============================================================================================
-    public CoreSuggestionViewUtilModule( BaseActivity baseActivity ) {
-        mBaseActivity = baseActivity;
-    }
-
-    //==============================================================================================
-    //
-    //
-    //
-    //
     //==============================================================================================
     // PROVIDERS
     //==============================================================================================
-    @Provides
+    @Binds
     @ViewScope
-    public BaseActivity provideBaseActivity() {
-        return mBaseActivity;
-    }
+    @Named("ViewContext")
+    public abstract Context provideBaseActivity(BaseActivity baseActivity);
 
-    @Provides
+    @Binds
     @ViewScope
-    public FlowNavigatorDelegate provideNavigatorDelegate() {
-        return mBaseActivity;
-    }
+    public abstract FlowNavigatorDelegate provideNavigatorDelegate(FlowNavigatorDelegate baseActivity) ;
 
-    @Provides
+    @Binds
     @ViewScope
-    public ResourceHelper provideResourceHelper( ResourceHelperImpl resourceHelper ) {
-        return resourceHelper;
-    }
+    public abstract ResourceHelper provideResourceHelper( ResourceHelperImpl resourceHelper ) ;
 
-    @Provides
+    @Binds
     @ViewScope
-    public AlertHelper provideAlertHelper( NativeAlertHelperImpl alertHelper ) {
-        return alertHelper;
-    }
+    public abstract AlertHelper provideAlertHelper( NativeAlertHelperImpl alertHelper );
 
-    @Provides
+    @Binds
     @ViewScope
-    public ViewHelper provideViewHelper( ViewHelperImpl viewHelper ) {
-        return viewHelper;
-    }
+    public abstract  ViewHelper provideViewHelper( ViewHelperImpl viewHelper );
     //==============================================================================================
 
 }

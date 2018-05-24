@@ -1,6 +1,7 @@
 package br.com.accera.internaltimesheet.ui.dashboard;
 
 import android.databinding.DataBindingUtil;
+import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
@@ -14,6 +15,8 @@ import java.util.Calendar;
 
 import javax.inject.Inject;
 
+import br.com.accera.core.presentation.ui.baseview.BaseActivity;
+import br.com.accera.core.presentation.utilities.DataBindResolverInstance;
 import br.com.accera.core.providers.network.NetworkInfoProvider;
 import br.com.accera.internaltimesheet.R;
 import br.com.accera.internaltimesheet.databinding.ActivityDashboardBinding;
@@ -21,7 +24,7 @@ import dagger.android.AndroidInjection;
 
 import static com.thekhaeng.pushdownanim.PushDownAnim.MODE_SCALE;
 
-public class DashboardActivity extends AppCompatActivity {
+public class DashboardActivity extends BaseActivity<DashboardContract.View, DashboardContract.Presenter> implements DashboardContract.View{
     private Handler mHandler = new Handler();
     private Runnable mRunnable;
     private boolean mRunnableStopped = false;
@@ -30,13 +33,39 @@ public class DashboardActivity extends AppCompatActivity {
     @Inject
     NetworkInfoProvider mAlertHelper;
 
-    @Override
-    protected void onCreate( Bundle savedInstanceState ) {
-        super.onCreate( savedInstanceState );
-        AndroidInjection.inject(this);
-        Toast.makeText( this, mAlertHelper.isConnected() + "", Toast.LENGTH_LONG ).show();
 
-        binding = DataBindingUtil.setContentView( this, R.layout.activity_dashboard );
+    @Override
+    public void onResume() {
+        this.mRunnableStopped = false;
+        this.startBedside();
+        super.onResume();
+
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        this.mRunnableStopped = true;
+    }
+
+    @Override
+    protected boolean hasToolbar() {
+        return false;
+    }
+
+    @Override
+    protected DashboardContract.View getContractView() {
+        return this;
+    }
+
+    @Override
+    protected int getInflateView() {
+        return R.layout.activity_dashboard;
+    }
+
+    @Override
+    protected void onDataBindingReady(ViewDataBinding coreDataBinding) {
+        binding = DataBindResolverInstance.getBinding(ActivityDashboardBinding.class, coreDataBinding);
 
         PushDownAnim.setPushDownAnimTo( binding.imgClock )
                 .setScale( MODE_SCALE,
@@ -51,20 +80,6 @@ public class DashboardActivity extends AppCompatActivity {
                         Toast.makeText( DashboardActivity.this, "PUSH DOWN !!", Toast.LENGTH_SHORT ).show();
                     }
                 } );
-    }
-
-    @Override
-    public void onResume() {
-        this.mRunnableStopped = false;
-        this.startBedside();
-        super.onResume();
-
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        this.mRunnableStopped = true;
     }
 
     private void startBedside() {

@@ -1,5 +1,9 @@
 package br.com.accera.core.presentation.ui.helpers.base;
 
+import android.content.Context;
+
+import javax.inject.Named;
+
 import br.com.accera.core.domain.behavior.ReleasableMemoryBehavior;
 import br.com.accera.core.presentation.ui.baseview.BaseActivity;
 
@@ -12,14 +16,14 @@ public abstract class BaseUiHelper implements ReleasableMemoryBehavior {
     /**
      * The M activity.
      */
-    protected BaseActivity mActivity;
+    protected Context mActivity;
 
     /**
      * Instantiates a new Base ui helper.
      *
      * @param mActivity the m activity
      */
-    public BaseUiHelper( BaseActivity mActivity ) {
+    public BaseUiHelper(Context mActivity ) {
         this.mActivity = mActivity;
     }
 

@@ -1,8 +1,10 @@
 package br.com.accera.core.presentation.ui.helpers.resource;
 
+import android.content.Context;
 import android.support.v4.content.ContextCompat;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import br.com.accera.core.presentation.ui.baseview.BaseActivity;
 import br.com.accera.core.presentation.ui.helpers.base.BaseUiHelper;
@@ -43,7 +45,7 @@ public class ResourceHelperImpl extends BaseUiHelper implements ResourceHelper {
      * @param activity the activity
      */
     @Inject
-    public ResourceHelperImpl( BaseActivity activity ) {
+    public ResourceHelperImpl( @Named("ViewContext") Context activity ) {
         super( activity );
     }
 
