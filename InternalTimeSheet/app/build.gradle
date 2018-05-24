@@ -55,6 +55,9 @@ dependencies {
     // View
     implementation globalDependencies.viewCordinator
     implementation globalDependencies.viewFloatActionButton
+    implementation(globalDependencies.viewPushDownAnimeClick) {
+        exclude group: 'com.android.support'
+    }
 
     // Dagger
     annotationProcessor globalDependencies.daggerKotlinCompile
