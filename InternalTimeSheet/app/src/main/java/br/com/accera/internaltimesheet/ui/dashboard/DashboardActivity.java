@@ -77,9 +77,14 @@ public class DashboardActivity extends BaseActivity<DashboardContract.View, Dash
                 .setOnClickListener( new View.OnClickListener() {
                     @Override
                     public void onClick( View view ) {
-                        Toast.makeText( DashboardActivity.this, "PUSH DOWN !!", Toast.LENGTH_SHORT ).show();
+                       mCorePresenter.receiveClick();
                     }
                 } );
+    }
+
+    @Override
+    public void showSpecifcMessage(String message) {
+        binding.dataCabecalho.setText(message);
     }
 
     private void startBedside() {

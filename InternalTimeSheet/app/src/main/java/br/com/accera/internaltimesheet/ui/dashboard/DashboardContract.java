@@ -9,10 +9,10 @@ import br.com.accera.core.presentation.ui.baseview.BaseMvpContract;
 public interface DashboardContract {
 
     interface View extends BaseMvpContract.View{
-
+        void showSpecifcMessage(String message);
     }
 
     interface Presenter extends BaseMvpContract.Presenter<View>{
-
+        void receiveClick();
     }
 }

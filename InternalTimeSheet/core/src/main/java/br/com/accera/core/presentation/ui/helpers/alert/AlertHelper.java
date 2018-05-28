@@ -35,6 +35,8 @@ public interface AlertHelper extends ReleasableMemoryBehavior{
      */
     void showErrorMessage( String error );
 
+    void showErrorMessage( int error );
+
     /**
      * Show error message.
      *

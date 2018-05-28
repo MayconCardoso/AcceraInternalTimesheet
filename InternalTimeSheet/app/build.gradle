@@ -51,29 +51,25 @@ android {
 //==============================================================================================
 dependencies {
     implementation project(':core')
-
     // View
     implementation globalDependencies.viewCordinator
     implementation globalDependencies.viewFloatActionButton
     implementation(globalDependencies.viewPushDownAnimeClick) {
         exclude group: 'com.android.support'
     }
-
     // Dagger
     annotationProcessor globalDependencies.daggerKotlinCompile
     annotationProcessor globalDependencies.dagger2SupportCompile
-
     // Fabric
     implementation(globalDependencies.fabricCrashlytics) {
         transitive = true
     }
-
     // Canary
     debugImplementation globalDependencies.leakCanaryAndroid
     releaseImplementation globalDependencies.leakCanaryAndroidNoOp
-
     testImplementation globalTestDependencies.junit
     androidTestImplementation globalTestDependencies.supportRunner
     androidTestImplementation globalTestDependencies.supportEspresso
+    implementation project(':data')
 }
 apply plugin: 'com.google.gms.google-services'

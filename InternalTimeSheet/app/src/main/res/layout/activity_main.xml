@@ -9,7 +9,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    tools:context="br.com.accera.internaltimesheet.MainActivity">
+    tools:context="br.com.accera.internaltimesheet.ui.main.MainActivity">
 
 
     <LinearLayout
@@ -63,7 +63,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/name"
-            android:text="@{cadastro.Nome}"
+            android:text="@={cadastro.Nome}"
             android:textColorHint="@color/white"
             android:inputType="text"
             android:backgroundTint="@color/white"
@@ -76,7 +76,7 @@
             android:layout_height="wrap_content"
             android:hint="Inicio da Jornada"
             android:inputType="text"
-            android:text="@{cadastro.Diainit}"
+            android:text="@={cadastro.Diainit}"
             android:backgroundTint="@color/white"
             android:textColorHint="@color/white"
             android:textColor="@color/white" />
@@ -87,7 +87,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/start_interval"
-            android:text="@{cadastro.Intervaloinit}"
+            android:text="@={cadastro.Intervaloinit}"
             android:textColorHint="@color/white"
             android:inputType="text"
             android:backgroundTint="@color/white"
@@ -99,7 +99,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/end_interval"
-            android:text="@{cadastro.Intervaloend}"
+            android:text="@={cadastro.Intervaloend}"
             android:textColorHint="@color/white"
             android:inputType="text"
             android:backgroundTint="@color/white"
@@ -110,7 +110,7 @@
             android:textAlignment="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{cadastro.Diaend}"
+            android:text="@={cadastro.Diaend}"
             android:hint="fim da jornada"
             android:backgroundTint="@color/white"
             android:inputType="text"

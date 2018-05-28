@@ -27,8 +27,8 @@
         app:button_menu="@menu/your_fab_buttons"
         android:scaleX="1.2"
         android:scaleY="1.2"
-        android:layout_marginTop="10sp"
-        android:layout_gravity="center_horizontal|bottom"/>
+        android:layout_marginTop="495sp"
+        android:layout_gravity="center_horizontal"/>
 
     <TextView
         android:id="@+id/info_hour_bank"
@@ -37,7 +37,7 @@
         android:layout_gravity="center"
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:layout_marginTop="90sp"
+        android:layout_marginTop="95sp"
         android:text="@string/message_touchclock"
         android:textSize="16sp"/>
 

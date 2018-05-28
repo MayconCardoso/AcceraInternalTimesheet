@@ -18,4 +18,5 @@
     <string name="data_cabecalho">Quinta-feira, 24 de maio de 2018</string>
     <string name="message_touchclock">Clique no relogio para registrar a jornada</string>
     <string name="hora_molde">00:00</string>
+    <string name="no_name">Nao possui Nome</string>
 </resources>

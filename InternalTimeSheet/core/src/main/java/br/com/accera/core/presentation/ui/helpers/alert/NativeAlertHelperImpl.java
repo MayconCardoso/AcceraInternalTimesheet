@@ -81,6 +81,11 @@ public class NativeAlertHelperImpl extends BaseUiHelper implements AlertHelper {
     }
 
     @Override
+    public void showErrorMessage(int error) {
+        showErrorMessage(mResourceHelper.getString(error));
+    }
+
+    @Override
     public void showErrorMessage( Throwable throwable ) {
         showErrorMessage( throwable.getLocalizedMessage() );
     }
