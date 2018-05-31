@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">InternalTimeSheet</string>
+    <string name="entry_time">Hora de Entrada: </string>
+    <string name="out_time">Hora de Saida: </string>
+    <string name="general">Visão Geral</string>
+    <string name="hour_bank">Banco de Horas</string>
+    <string name="inicio_da_contagem">Inicio do Ciclo:</string>
+    <string name="fim_da_contagem">Fim do Ciclo:</string>
+    <string name="dias_restantes">Dias Restantes:</string>
+    <string name="saldo_do_dia">Saldo do Dia:</string>
+    <string name="informa_es_adicionais">Informações Adicionais</string>
+    <string name="welcome">Bem Vindo(a)!</string>
+    <string name="basic_information">Precisamos de algumas informações para começar:</string>
+    <string name="name">Nome</string>
+    <string name="start_interval">Inicio de Intervalo:</string>
+    <string name="end_interval">Fim de Intervalo:</string>
+    <string name="start">Vamos Lá!</string>
+    <string name="data_cabecalho">Quinta-feira, 24 de maio de 2018</string>
+    <string name="message_touchclock">Clique no relogio para registrar a jornada</string>
+    <string name="hora_molde">00:00</string>
+    <string name="no_name">Nao possui Nome</string>
 </resources>

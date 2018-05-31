@@ -1,0 +1,79 @@
+ext {
+    //==============================================================================================
+    // Versions - Application
+    //==============================================================================================
+
+    // Views and Support
+    SUPPORT_LIBS_VERSION                    = '27.1.1'
+    CORDINATOR_LAYOUT_VERSION               = '1.1.0'
+    FLOAT_ACTION_BUTTON_VERSION             = '1.2.0'
+    PUSH_DOWN_ANIME                         = '1.1.1'
+
+    // Android Helpers
+    CRASHLYTICS_VERSION                     = '2.9.2@aar'
+    DAGGER_VERSION                          = '2.16'
+    RXJAVA_VERSION                          = '2.0.2'
+    LEAK_CANARY                             = '1.5.4'
+    ANNOTATION_JSR250_VERSION               = '1.0'
+
+    //==============================================================================================
+    //
+    //
+    //
+    //
+    //==============================================================================================
+    //  Versions - Tests
+    //==============================================================================================
+    JUNIT_VERSION                           = '4.12'
+    SUPPORT_TEST_RUNNER_VERSION             = '1.0.2'
+    EXPRESSO_CORE_VERSION                   = '3.0.2'
+
+    //==============================================================================================
+    //
+    //
+    //
+    //
+    //==============================================================================================
+    // Compiles - Application
+    //==============================================================================================
+    globalDependencies = [
+            // View
+            viewSupportDesign               : "com.android.support:design:${SUPPORT_LIBS_VERSION}",
+            viewSupportAppCompat            : "com.android.support:appcompat-v7:${SUPPORT_LIBS_VERSION}",
+            viewSupportRecyclerview         : "com.android.support:recyclerview-v7:${SUPPORT_LIBS_VERSION}",
+            viewSupportCardview             : "com.android.support:cardview-v7:${SUPPORT_LIBS_VERSION}",
+            viewCordinator                  : "com.android.support.constraint:constraint-layout:${CORDINATOR_LAYOUT_VERSION}",
+            viewFloatActionButton           : "com.github.joaquimley:faboptions:${FLOAT_ACTION_BUTTON_VERSION}",
+            viewPushDownAnimeClick          : "com.github.thekhaeng:pushdown-anim-click:${PUSH_DOWN_ANIME}",
+
+            // Rx
+            rxAndroid                       : "io.reactivex.rxjava2:rxandroid:${RXJAVA_VERSION}",
+            rxJava                          : "io.reactivex.rxjava2:rxjava:${RXJAVA_VERSION}",
+
+            fabricCrashlytics               : "com.crashlytics.sdk.android:crashlytics:${CRASHLYTICS_VERSION}",
+            dagger2                         : "com.google.dagger:dagger:${DAGGER_VERSION}",
+            daggerKotlinCompile             : "com.google.dagger:dagger-compiler:${DAGGER_VERSION}",
+            dagger2Support                  : "com.google.dagger:dagger-android-support:${DAGGER_VERSION}",
+            dagger2SupportCompile           : "com.google.dagger:dagger-android-processor:${DAGGER_VERSION}",
+
+            leakCanaryAndroid               : "com.squareup.leakcanary:leakcanary-android:${LEAK_CANARY}",
+            leakCanaryAndroidNoOp           : "com.squareup.leakcanary:leakcanary-android-no-op:${LEAK_CANARY}",
+            javaxJsr250                     : "javax.annotation:jsr250-api:${ANNOTATION_JSR250_VERSION}",
+
+    ]
+    //==============================================================================================
+    //
+    //
+    //
+    //
+    //==============================================================================================
+    // Compiles - Tests
+    //==============================================================================================
+    globalTestDependencies = [
+            junit                           : "junit:junit:${JUNIT_VERSION}",
+            supportRunner                   : "com.android.support.test:runner:${SUPPORT_TEST_RUNNER_VERSION}",
+            supportEspresso                 : "com.android.support.test.espresso:espresso-core:${EXPRESSO_CORE_VERSION}"
+
+
+    ]
+}
