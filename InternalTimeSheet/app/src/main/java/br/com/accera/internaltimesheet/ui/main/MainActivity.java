@@ -1,37 +1,20 @@
 package br.com.accera.internaltimesheet.ui.main;
 
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
-import android.widget.TimePicker;
 
 import com.thekhaeng.pushdownanim.PushDownAnim;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
-import com.wdullaer.materialdatetimepicker.time.RadialPickerLayout;
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
-import com.wdullaer.materialdatetimepicker.time.Timepoint;
 
 import java.util.Calendar;
 
-import javax.inject.Inject;
-
 import br.com.accera.core.presentation.ui.baseview.BaseActivity;
 import br.com.accera.core.presentation.utilities.DataBindResolverInstance;
-import br.com.accera.core.providers.network.NetworkInfoProvider;
 import br.com.accera.internaltimesheet.R;
 import br.com.accera.internaltimesheet.User;
-import br.com.accera.internaltimesheet.databinding.ActivityDashboardBinding;
 import br.com.accera.internaltimesheet.databinding.ActivityMainBinding;
-import br.com.accera.internaltimesheet.ui.dashboard.DashboardActivity;
-import br.com.accera.internaltimesheet.ui.dashboard.DashboardContract;
-
-import static com.thekhaeng.pushdownanim.PushDownAnim.MODE_SCALE;
 
 public class MainActivity extends BaseActivity<MainContract.View, MainContract.Presenter> implements MainContract.View, TimePickerDialog.OnTimeSetListener, DatePickerDialog.OnDateSetListener {
 
@@ -83,18 +66,29 @@ public class MainActivity extends BaseActivity<MainContract.View, MainContract.P
         }
     }
 
-    private TimePickerDialog tpd;
+    @Override
+    public void cleanAllErrors() {
+        binding.name.setError(null);
+        binding.startJourney.setError(null);
+        binding.startInterval.setError(null);
+        binding.endInterval.setError(null);
+        binding.endJourney.setError(null);
+    }
 
     @Override
     protected void onDataBindingReady(ViewDataBinding coreDataBinding) {
         binding = DataBindResolverInstance.getBinding(ActivityMainBinding.class, coreDataBinding);
         binding.setCadastro(new User());
         User obj = new User();
-        obj.setNome(" ");
+        obj.setName(" ");
 
         PushDownAnim.setPushDownAnimTo(binding.start)
                 .setOnClickListener(view ->
-                        mCorePresenter.receiveClick(binding.getCadastro().Nome, binding.getCadastro().Diainit, binding.getCadastro().Intervaloinit, binding.getCadastro().Intervaloend, binding.getCadastro().Diaend)
+                        mCorePresenter.receiveClick(new User(binding.getCadastro().name,
+                                binding.getCadastro().startJourney,
+                                binding.getCadastro().startInterval,
+                                binding.getCadastro().endInterval,
+                                binding.getCadastro().endJourney))
                 );
 
         binding.startJourney.setOnClickListener(v -> {
@@ -130,7 +124,7 @@ public class MainActivity extends BaseActivity<MainContract.View, MainContract.P
                 TimePickerDialog tpd = TimePickerDialog.newInstance(
                         MainActivity.this,
                         now.get(Calendar.HOUR_OF_DAY),
-                        now.get(Calendar.SECOND),
+                        now.get(Calendar.MINUTE),
                         true
                 );
                 tpd.setAccentColor("#d35400");
@@ -145,7 +139,7 @@ public class MainActivity extends BaseActivity<MainContract.View, MainContract.P
                 TimePickerDialog tpd = TimePickerDialog.newInstance(
                         MainActivity.this,
                         now.get(Calendar.HOUR_OF_DAY),
-                        now.get(Calendar.SECOND),
+                        now.get(Calendar.MINUTE),
                         true
                 );
                 tpd.setAccentColor("#d35400");

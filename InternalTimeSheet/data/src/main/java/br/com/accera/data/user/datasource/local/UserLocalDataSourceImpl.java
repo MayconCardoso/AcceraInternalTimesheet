@@ -2,7 +2,6 @@ package br.com.accera.data.user.datasource.local;
 
 import android.os.Handler;
 import android.os.Looper;
-import android.util.Log;
 
 import javax.inject.Inject;
 
@@ -24,7 +23,6 @@ public class UserLocalDataSourceImpl implements UserLocalDataSource{
         new Thread(new Runnable() {
             @Override
             public void run() {
-                Log.i("Teste2", user.Nome);
 
                 try {
                     Thread.sleep(5000);

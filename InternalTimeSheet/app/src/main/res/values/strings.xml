@@ -19,8 +19,9 @@
     <string name="message_touchclock">Clique no relogio para registrar a jornada</string>
     <string name="hora_molde">00:00</string>
     <string name="no_name">Insira um Nome!</string>
-    <string name="no_day_init">Insira um dia para o inicio da jornada!</string>
-    <string name="no_dayend">Insira um dia para o final da jornada! :</string>
-    <string name="no_jornadainit">Insira o horário de inicio da jornada</string>
-    <string name="no_jornadaend">Insira o horário de fim da jornada!</string>
+    <string name="no_journey_init">Insira um dia para o inicio da jornada!</string>
+    <string name="no_journey_end">Insira um dia para o final da jornada!</string>
+    <string name="no_interval_init">Insira o horário de inicio da jornada!</string>
+    <string name="no_interval_end">Insira o horário de fim da jornada!</string>
+
 </resources>

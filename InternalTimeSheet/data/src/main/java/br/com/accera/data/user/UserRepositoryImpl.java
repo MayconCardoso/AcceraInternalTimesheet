@@ -20,6 +20,6 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public void saveUser(UserDto user, DataCompleteResponse response) {
-        mUserLocalDataSource.saveUser(user,response);
+        mUserLocalDataSource.saveUser(user, response);
     }
 }

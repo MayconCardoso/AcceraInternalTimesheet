@@ -1,16 +1,14 @@
 package br.com.accera.internaltimesheet.ui.main;
 
-import android.content.Intent;
 import android.text.TextUtils;
-import android.util.Log;
 
 import javax.inject.Inject;
 
 import br.com.accera.callback.DataCompleteResponse;
-import br.com.accera.core.presentation.ui.baseview.BasePresenterImpl;
 import br.com.accera.data.user.UserDto;
 import br.com.accera.data.user.UserRepository;
 import br.com.accera.internaltimesheet.R;
+import br.com.accera.internaltimesheet.User;
 import br.com.accera.internaltimesheet.ui.base.BaseTimesheetPresenter;
 
 /**
@@ -26,29 +24,37 @@ public class MainPresenterImpl extends BaseTimesheetPresenter<MainContract.View>
         this.userRepository = userRepository;
     }
 
-    public void receiveClick(String nome, String diainit, String jornadainit,  String diaend, String jornadaend){
-        if (TextUtils.isEmpty(nome)){
-            mView.getAlertHelper().showErrorMessage(R.string.no_name);
+
+    public void receiveClick(User user){
+        mView.cleanAllErrors();
+
+        if (TextUtils.isEmpty(user.name)){
+            mView.setErrorOnField(R.id.name, mView.getResourceHelper().getString(R.string.no_name));
+            return;
         }
-        if (TextUtils.isEmpty(diainit)){
-            mView.getAlertHelper().showErrorMessage(R.string.no_day_init);
+        if (TextUtils.isEmpty(user.startJourney)){
+            mView.setErrorOnField(R.id.start_journey, mView.getResourceHelper().getString(R.string.no_journey_init));
+            return;
         }
-        if (TextUtils.isEmpty(diaend)){
-            mView.getAlertHelper().showErrorMessage(R.string.no_dayend);
+        if (TextUtils.isEmpty(user.startInterval)){
+            mView.setErrorOnField(R.id.start_interval, mView.getResourceHelper().getString(R.string.no_interval_init));
+            return;
         }
-        if (TextUtils.isEmpty(jornadainit)){
-            mView.getAlertHelper().showErrorMessage(R.string.no_jornadainit);
+        if (TextUtils.isEmpty(user.endInterval)){
+            mView.setErrorOnField(R.id.end_interval, mView.getResourceHelper().getString(R.string.no_interval_end));
+            return;
         }
-        if (TextUtils.isEmpty(jornadaend)){
-            mView.getAlertHelper().showErrorMessage(R.string.no_jornadaend);
+        if (TextUtils.isEmpty(user.endJourney)){
+            mView.setErrorOnField(R.id.end_journey, mView.getResourceHelper().getString(R.string.no_journey_end));
+            return;
         }
 
         UserDto userDto = new UserDto();
-        userDto.setNome(nome);
-        userDto.setDiaend(diaend);
-        userDto.setDiainit(diainit);
-        userDto.setIntervaloend(jornadaend);
-        userDto.setIntervaloinit(jornadainit);
+        userDto.setName(user.name);
+        userDto.setStartJourney(user.startJourney);
+        userDto.setStartInterval(user.startInterval);
+        userDto.setEndInterval(user.endInterval);
+        userDto.setEndJourney(user.endJourney);
 
         mView.getAlertHelper().showLoading("Salvando usuario");
         userRepository.saveUser(userDto, new DataCompleteResponse() {

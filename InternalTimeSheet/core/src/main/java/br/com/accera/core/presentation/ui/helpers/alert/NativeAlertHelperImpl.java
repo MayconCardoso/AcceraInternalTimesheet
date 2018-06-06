@@ -9,7 +9,6 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.com.accera.core.R;
-import br.com.accera.core.presentation.ui.baseview.BaseActivity;
 import br.com.accera.core.presentation.ui.helpers.base.BaseUiHelper;
 import br.com.accera.core.presentation.ui.helpers.resource.ResourceHelper;
 import br.com.accera.core.presentation.utilities.ViewUtil;

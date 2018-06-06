@@ -11,11 +11,12 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.Toolbar;
 import android.util.SparseArray;
+import android.view.View;
+import android.widget.EditText;
 
 import javax.inject.Inject;
 
 import br.com.accera.core.R;
-import br.com.accera.core.presentation.flow.FlowNavigator;
 import br.com.accera.core.presentation.flow.FlowNavigatorDelegate;
 import br.com.accera.core.presentation.ui.helpers.alert.AlertHelper;
 import br.com.accera.core.presentation.ui.helpers.resource.ResourceHelper;
@@ -239,6 +240,19 @@ public abstract class BaseActivity<VIEW extends BaseMvpContract.View, PRESENTER 
                 mResourceHelper.getString( R.string.noInternetConnectionWarning )
         );
     }
+
+    @Override
+    public void setErrorOnField(int id, String error) {
+        View pView = findViewById(id);
+        if (pView == null) throw new IllegalArgumentException("View not found");
+        if (pView instanceof EditText) {
+            EditText edText = (EditText) pView;
+            edText.setError(error);
+            edText.setFocusable(true);
+            edText.requestFocus();
+        }
+    }
+
     //==============================================================================================
     //
     //

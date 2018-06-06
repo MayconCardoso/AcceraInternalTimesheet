@@ -9,73 +9,73 @@ import android.databinding.Bindable;
 
 public class User extends BaseObservable {
 
-    public String Nome;
-     public String Diainit;
-    public String Diaend;
-    public String Intervaloinit;
-    public String Intervaloend;
+    public String name;
+    public String startJourney;
+    public String endJourney;
+    public String startInterval;
+    public String endInterval;
 
     public User() {
 
     }
 
-    public User(String nome, String diainit, String diaend, String intervaloinit, String intervaloend) {
-        Nome = nome;
-        Diainit = diainit;
-        Diaend = diaend;
-        Intervaloinit = intervaloinit;
-        Intervaloend = intervaloend;
+    public User(String name, String startJourney, String startInterval, String endInterval, String endJourney) {
+        this.name = name;
+        this.startJourney = startJourney;
+        this.endJourney = endJourney;
+        this.startInterval = startInterval;
+        this.endInterval = endInterval;
     }
 
     @Bindable
-    public String getNome() {
-        return Nome;
+    public String getName() {
+        return name;
     }
 
     @Bindable
-    public void setNome(String nome) {
-        Nome = nome;
-        notifyPropertyChanged(BR.nome);
+    public void setName(String name) {
+        this.name = name;
+        notifyPropertyChanged(BR.name);
     }
 
 
-    public String getDiainit() {
-        return Diainit;
-    }
-
-    @Bindable
-    public void setDiainit(String diainit) {
-        Diainit = diainit;
-        notifyPropertyChanged(BR.diainit);
-    }
-
-    public String getDiaend() {
-        return Diaend;
+    public String getStartJourney() {
+        return startJourney;
     }
 
     @Bindable
-    public void setDiaend(String diaend) {
-        Diaend = diaend;
-        notifyPropertyChanged(BR.diaend);
+    public void setStartJourney(String startJourney) {
+        this.startJourney = startJourney;
+        notifyPropertyChanged(BR.startJourney);
     }
 
-    public String getIntervaloinit() {
-        return Intervaloinit;
-    }
-
-    @Bindable
-    public void setIntervaloinit(String intervaloinit) {
-        Intervaloinit = intervaloinit;
-        notifyPropertyChanged(BR.intervaloinit);
-    }
-
-    public String getIntervaloend() {
-        return Intervaloend;
+    public String getEndJourney() {
+        return endJourney;
     }
 
     @Bindable
-    public void setIntervaloend(String intervaloend) {
-        Intervaloend = intervaloend;
-        notifyPropertyChanged(BR.intervaloend);
+    public void setEndJourney(String endJourney) {
+        this.endJourney = endJourney;
+        notifyPropertyChanged(BR.endJourney);
+    }
+
+    public String getStartInterval() {
+        return startInterval;
+    }
+
+    @Bindable
+    public void setStartInterval(String startInterval) {
+        this.startInterval = startInterval;
+        notifyPropertyChanged(BR.startInterval);
+    }
+
+    public String getEndInterval() {
+        return endInterval;
+    }
+
+    @Bindable
+    public void setEndInterval(String endInterval) {
+        this.endInterval = endInterval;
+        notifyPropertyChanged(BR.endInterval);
     }
 }
