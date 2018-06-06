@@ -10,12 +10,13 @@ import javax.inject.Inject;
 import br.com.accera.core.presentation.ui.baseview.BasePresenterImpl;
 import br.com.accera.core.presentation.utilities.DateUtilFormat;
 import br.com.accera.core.presentation.utilities.LocaleUtil;
+import br.com.accera.internaltimesheet.ui.base.BaseTimesheetPresenter;
 
 /**
  * Created by fobalan on 24/05/18.
  */
 
-public class DashboardPresenterImpl extends BasePresenterImpl<DashboardContract.View> implements DashboardContract.Presenter {
+public class DashboardPresenterImpl extends BaseTimesheetPresenter<DashboardContract.View> implements DashboardContract.Presenter {
 
     @Inject
     public DashboardPresenterImpl() {

@@ -9,8 +9,8 @@
     <string name="dias_restantes">Dias Restantes:</string>
     <string name="saldo_do_dia">Saldo do Dia:</string>
     <string name="informa_es_adicionais">Informações Adicionais</string>
-    <string name="welcome">Bem Vindo(a)!</string>
-    <string name="basic_information">Precisamos de algumas informações para começar:</string>
+    <string name="welcome">Criar uma conta</string>
+    <string name="basic_information">Já possui uma conta? Clique aqui</string>
     <string name="name">Nome</string>
     <string name="start_interval">Inicio de Intervalo:</string>
     <string name="end_interval">Fim de Intervalo:</string>
@@ -18,5 +18,9 @@
     <string name="data_cabecalho">Quinta-feira, 24 de maio de 2018</string>
     <string name="message_touchclock">Clique no relogio para registrar a jornada</string>
     <string name="hora_molde">00:00</string>
-    <string name="no_name">Nao possui Nome</string>
+    <string name="no_name">Insira um Nome!</string>
+    <string name="no_day_init">Insira um dia para o inicio da jornada!</string>
+    <string name="no_dayend">Insira um dia para o final da jornada! :</string>
+    <string name="no_jornadainit">Insira o horário de inicio da jornada</string>
+    <string name="no_jornadaend">Insira o horário de fim da jornada!</string>
 </resources>

@@ -45,6 +45,7 @@ ext {
             viewCordinator                  : "com.android.support.constraint:constraint-layout:${CORDINATOR_LAYOUT_VERSION}",
             viewFloatActionButton           : "com.github.joaquimley:faboptions:${FLOAT_ACTION_BUTTON_VERSION}",
             viewPushDownAnimeClick          : "com.github.thekhaeng:pushdown-anim-click:${PUSH_DOWN_ANIME}",
+            viewDateTimePicker              : "com.wdullaer:materialdatetimepicker:3.6.0",
 
             // Rx
             rxAndroid                       : "io.reactivex.rxjava2:rxandroid:${RXJAVA_VERSION}",

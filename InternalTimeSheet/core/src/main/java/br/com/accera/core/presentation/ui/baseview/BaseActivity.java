@@ -15,6 +15,7 @@ import android.util.SparseArray;
 import javax.inject.Inject;
 
 import br.com.accera.core.R;
+import br.com.accera.core.presentation.flow.FlowNavigator;
 import br.com.accera.core.presentation.flow.FlowNavigatorDelegate;
 import br.com.accera.core.presentation.ui.helpers.alert.AlertHelper;
 import br.com.accera.core.presentation.ui.helpers.resource.ResourceHelper;

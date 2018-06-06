@@ -53,6 +53,7 @@ dependencies {
     implementation project(':core')
     // View
     implementation globalDependencies.viewCordinator
+    implementation globalDependencies.viewDateTimePicker
     implementation globalDependencies.viewFloatActionButton
     implementation(globalDependencies.viewPushDownAnimeClick) {
         exclude group: 'com.android.support'

@@ -4,6 +4,7 @@ import br.com.accera.core.presentation.di.module.CoreSuggestionViewUtilModule;
 import br.com.accera.core.presentation.di.scope.ViewScope;
 import br.com.accera.core.presentation.flow.FlowNavigator;
 import br.com.accera.core.presentation.ui.handler.ErrorLoggerHandler;
+import br.com.accera.internaltimesheet.ui.flow.TimesheetFlowNavigator;
 import br.com.accera.internaltimesheet.ui.flow.TimesheetFlowNavigatorImpl;
 import br.com.accera.internaltimesheet.ui.handlers.ErrorHandlerImpl;
 import dagger.Binds;
@@ -17,7 +18,7 @@ public abstract class ViewModule extends CoreSuggestionViewUtilModule{
 
     @Binds
     @ViewScope
-    public abstract FlowNavigator providesFlowNavigator (TimesheetFlowNavigatorImpl flowNavigator);
+    public abstract TimesheetFlowNavigator providesFlowNavigator (TimesheetFlowNavigatorImpl flowNavigator);
 
 
     @Binds

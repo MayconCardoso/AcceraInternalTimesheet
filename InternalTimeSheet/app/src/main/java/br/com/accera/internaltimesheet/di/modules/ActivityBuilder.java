@@ -6,6 +6,7 @@ import br.com.accera.internaltimesheet.ui.dashboard.DashboardActivity;
 import br.com.accera.internaltimesheet.ui.dashboard.di.DashboardModule;
 import br.com.accera.internaltimesheet.ui.main.MainActivity;
 import br.com.accera.internaltimesheet.ui.main.di.MainModule;
+import br.com.accera.internaltimesheet.ui.main.di.UserModule;
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
 
@@ -19,6 +20,6 @@ public abstract class ActivityBuilder {
     abstract DashboardActivity bindDashboardActivity();
 
     @ViewScope
-    @ContributesAndroidInjector(modules = {MainModule.class, ViewModule.class})
+    @ContributesAndroidInjector(modules = {MainModule.class, UserModule.class, ViewModule.class})
     abstract MainActivity bindMainActivity();
 }
