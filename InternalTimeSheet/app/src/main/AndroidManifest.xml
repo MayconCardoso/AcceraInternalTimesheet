@@ -21,7 +21,9 @@
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="68f48c119d6a2f905cb2f9c90e35ceb0b15ef516" />
-        <activity android:name=".ui.dashboard.DashboardActivity" />
+        <activity android:name=".ui.dashboard.DashboardActivity" >
+
+        </activity>
         <activity android:name=".DetailsActivity"></activity>
     </application>
 

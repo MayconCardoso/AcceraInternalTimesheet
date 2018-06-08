@@ -10,9 +10,13 @@ public interface DashboardContract {
 
     interface View extends BaseMvpContract.View{
         void showSpecifcMessage(String message);
+        void setTimeIn(String time);
+        void setTimeOut(String time);
+        void setTimeDiff(String time, int color);
     }
 
     interface Presenter extends BaseMvpContract.Presenter<View>{
-        void receiveClick();
+        void receiveClick(Boolean time);
+
     }
 }

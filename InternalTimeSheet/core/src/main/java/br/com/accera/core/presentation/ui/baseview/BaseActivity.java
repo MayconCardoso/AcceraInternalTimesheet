@@ -13,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.SparseArray;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import javax.inject.Inject;
 
@@ -251,6 +252,12 @@ public abstract class BaseActivity<VIEW extends BaseMvpContract.View, PRESENTER 
             edText.setFocusable(true);
             edText.requestFocus();
         }
+    }
+
+    @Override
+    public String getTextFromTextView(int id) {
+        TextView textView = findViewById(id);
+        return textView.getText().toString();
     }
 
     //==============================================================================================

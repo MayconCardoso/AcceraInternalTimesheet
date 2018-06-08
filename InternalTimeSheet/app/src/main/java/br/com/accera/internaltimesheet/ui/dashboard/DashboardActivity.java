@@ -1,15 +1,8 @@
 package br.com.accera.internaltimesheet.ui.dashboard;
 
-import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
-import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.Toast;
-
-import com.thekhaeng.pushdownanim.PushDownAnim;
 
 import java.util.Calendar;
 
@@ -20,15 +13,14 @@ import br.com.accera.core.presentation.utilities.DataBindResolverInstance;
 import br.com.accera.core.providers.network.NetworkInfoProvider;
 import br.com.accera.internaltimesheet.R;
 import br.com.accera.internaltimesheet.databinding.ActivityDashboardBinding;
-import dagger.android.AndroidInjection;
-
-import static com.thekhaeng.pushdownanim.PushDownAnim.MODE_SCALE;
+import br.com.accera.internaltimesheet.ui.animation.PushDownAnimHelper;
 
 public class DashboardActivity extends BaseActivity<DashboardContract.View, DashboardContract.Presenter> implements DashboardContract.View{
     private Handler mHandler = new Handler();
     private Runnable mRunnable;
     private boolean mRunnableStopped = false;
     ActivityDashboardBinding binding;
+    private boolean timeControl = true;
 
     @Inject
     NetworkInfoProvider mAlertHelper;
@@ -67,19 +59,10 @@ public class DashboardActivity extends BaseActivity<DashboardContract.View, Dash
     protected void onDataBindingReady(ViewDataBinding coreDataBinding) {
         binding = DataBindResolverInstance.getBinding(ActivityDashboardBinding.class, coreDataBinding);
 
-        PushDownAnim.setPushDownAnimTo( binding.imgClock )
-                .setScale( MODE_SCALE,
-                        0.60f )
-                .setDurationPush( PushDownAnim.DEFAULT_PUSH_DURATION )
-                .setDurationRelease( PushDownAnim.DEFAULT_RELEASE_DURATION )
-                .setInterpolatorPush( PushDownAnim.DEFAULT_INTERPOLATOR )
-                .setInterpolatorRelease( PushDownAnim.DEFAULT_INTERPOLATOR )
-                .setOnClickListener( new View.OnClickListener() {
-                    @Override
-                    public void onClick( View view ) {
-                       mCorePresenter.receiveClick();
-                    }
-                } );
+        PushDownAnimHelper.createDefault(binding.outHour, v -> timeControl = false);
+        PushDownAnimHelper.createDefault(binding.inHour, v -> timeControl = true);
+        PushDownAnimHelper.createDefault(binding.imgClock, v -> mCorePresenter.receiveClick(timeControl));
+
     }
 
     @Override
@@ -87,9 +70,27 @@ public class DashboardActivity extends BaseActivity<DashboardContract.View, Dash
         binding.dataCabecalho.setText(message);
     }
 
+    @Override
+    public void setTimeIn(String time) {
+        binding.inHour.setText(time);
+        binding.inHour.setTextColor(mResourceHelper.getColor(R.color.colorPrimary));
+        timeControl = false;
+    }
+
+    @Override
+    public void setTimeOut(String time) {
+        binding.outHour.setText(time);
+        binding.outHour.setTextColor(mResourceHelper.getColor(R.color.colorPrimary));
+    }
+
+    @Override
+    public void setTimeDiff(String time, int color) {
+        binding.totalHours.setText(time);
+        binding.totalHours.setTextColor(mResourceHelper.getColor(color));
+    }
+
+
     private void startBedside() {
-
-
         final Calendar calendar = Calendar.getInstance(); //instanciou o calendario do android
         // Runnable é uma interface. Consegue fazer interface pq no java é uma classe anônima. Uma classe anonima não precisa explicitamente escrever Runnable
         this.mRunnable = new Runnable() {

@@ -2,9 +2,7 @@ package br.com.accera.internaltimesheet.ui.main;
 
 import android.databinding.ViewDataBinding;
 import android.os.Bundle;
-import android.view.View;
 
-import com.thekhaeng.pushdownanim.PushDownAnim;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 
@@ -15,8 +13,9 @@ import br.com.accera.core.presentation.utilities.DataBindResolverInstance;
 import br.com.accera.internaltimesheet.R;
 import br.com.accera.internaltimesheet.User;
 import br.com.accera.internaltimesheet.databinding.ActivityMainBinding;
+import br.com.accera.internaltimesheet.ui.animation.PushDownAnimHelper;
 
-public class MainActivity extends BaseActivity<MainContract.View, MainContract.Presenter> implements MainContract.View, TimePickerDialog.OnTimeSetListener, DatePickerDialog.OnDateSetListener {
+public class MainActivity extends BaseActivity<MainContract.View, MainContract.Presenter> implements MainContract.View {
 
 
     ActivityMainBinding binding;
@@ -42,30 +41,6 @@ public class MainActivity extends BaseActivity<MainContract.View, MainContract.P
 
     }
 
-    boolean startInterval;
-    boolean startJourney;
-
-
-    @Override
-    public void onTimeSet(TimePickerDialog view, int hourOfDay, int minute, int second) {
-        String time = hourOfDay + "h" + minute + "m" + second;
-        if (startInterval) {
-            binding.startInterval.setText(time);
-        } else {
-            binding.endInterval.setText(time);
-        }
-    }
-
-    @Override
-    public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
-        String date = dayOfMonth + "/" + (monthOfYear + 1) + "/" + year;
-        if (startJourney) {
-            binding.startJourney.setText(date);
-        } else {
-            binding.endJourney.setText(date);
-        }
-    }
-
     @Override
     public void cleanAllErrors() {
         binding.name.setError(null);
@@ -82,69 +57,64 @@ public class MainActivity extends BaseActivity<MainContract.View, MainContract.P
         User obj = new User();
         obj.setName(" ");
 
-        PushDownAnim.setPushDownAnimTo(binding.start)
-                .setOnClickListener(view ->
-                        mCorePresenter.receiveClick(new User(binding.getCadastro().name,
-                                binding.getCadastro().startJourney,
-                                binding.getCadastro().startInterval,
-                                binding.getCadastro().endInterval,
-                                binding.getCadastro().endJourney))
-                );
+        PushDownAnimHelper.createDefault(binding.start, v ->
+                mCorePresenter.receiveClick(new User(binding.getCadastro().name,
+                binding.getCadastro().startJourney,
+                binding.getCadastro().startInterval,
+                binding.getCadastro().endInterval,
+                binding.getCadastro().endJourney)));
 
         binding.startJourney.setOnClickListener(v -> {
-            Calendar now = Calendar.getInstance();
-            startJourney = true;
-            DatePickerDialog dpd = DatePickerDialog.newInstance(
-                    MainActivity.this,
-                    now.get(Calendar.YEAR),
-                    now.get(Calendar.MONTH),
-                    now.get(Calendar.DAY_OF_MONTH)
-            );
-            dpd.setAccentColor("#d35400");
-            dpd.show(getFragmentManager(), "Datepickerdialog");
+            showDatePickerDialog((view, year, monthOfYear, dayOfMonth) -> {
+                String date = dayOfMonth + "/" + (monthOfYear + 1) + "/" + year;
+                binding.startJourney.setText(date);
+            });
         });
 
         binding.endJourney.setOnClickListener(v -> {
-            Calendar now = Calendar.getInstance();
-            startJourney = false;
-            DatePickerDialog dpd = DatePickerDialog.newInstance(
-                    MainActivity.this,
-                    now.get(Calendar.YEAR),
-                    now.get(Calendar.MONTH),
-                    now.get(Calendar.DAY_OF_MONTH)
-            );
-            dpd.setAccentColor("#d35400");
-            dpd.show(getFragmentManager(), "Datepickerdialog");
+            showDatePickerDialog((view, year, monthOfYear, dayOfMonth) -> {
+                String date = dayOfMonth + "/" + (monthOfYear + 1) + "/" + year;
+                binding.endJourney.setText(date);
+            });
         });
 
-        binding.endInterval.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                startInterval = false;
-                Calendar now = Calendar.getInstance();
-                TimePickerDialog tpd = TimePickerDialog.newInstance(
-                        MainActivity.this,
-                        now.get(Calendar.HOUR_OF_DAY),
-                        now.get(Calendar.MINUTE),
-                        true
-                );
-                tpd.setAccentColor("#d35400");
-                tpd.show(getFragmentManager(), "Timepickerdialog");
-            }
+        binding.endInterval.setOnClickListener(v -> {
+            showTimePickerDialog((view, hourOfDay, minute, second) -> {
+                String time = hourOfDay + "h" + minute + "m" + second;
+                binding.endInterval.setText(time);
+            });
         });
 
-        binding.startInterval.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Calendar now = Calendar.getInstance();
-                startInterval = true;
-                TimePickerDialog tpd = TimePickerDialog.newInstance(
-                        MainActivity.this,
-                        now.get(Calendar.HOUR_OF_DAY),
-                        now.get(Calendar.MINUTE),
-                        true
-                );
-                tpd.setAccentColor("#d35400");
-                tpd.show(getFragmentManager(), "Timepickerdialog");
-            }
+        binding.startInterval.setOnClickListener(v -> {
+            showTimePickerDialog((view, hourOfDay, minute, second) -> {
+                String time = hourOfDay + "h" + minute + "m" + second;
+                binding.startInterval.setText(time);
+            });
         });
+    }
+
+    private void showDatePickerDialog(DatePickerDialog.OnDateSetListener onDateSetListener) {
+        Calendar now = Calendar.getInstance();
+        DatePickerDialog dpd = DatePickerDialog.newInstance(
+                onDateSetListener,
+                now.get(Calendar.YEAR),
+                now.get(Calendar.MONTH),
+                now.get(Calendar.DAY_OF_MONTH)
+        );
+        dpd.setAccentColor(mResourceHelper.getColor(R.color.pumpkin));
+        dpd.show(getFragmentManager(), "Datepickerdialog");
+    }
+
+    private void showTimePickerDialog(TimePickerDialog.OnTimeSetListener onTimeChangedListener) {
+        Calendar now = Calendar.getInstance();
+        TimePickerDialog tpd = TimePickerDialog.newInstance(
+                onTimeChangedListener,
+                now.get(Calendar.HOUR_OF_DAY),
+                now.get(Calendar.MINUTE),
+                now.get(Calendar.SECOND),
+                true
+        );
+        tpd.setAccentColor(mResourceHelper.getColor(R.color.pumpkin));
+        tpd.show(getFragmentManager(), "Timepickerdialog");
     }
 }

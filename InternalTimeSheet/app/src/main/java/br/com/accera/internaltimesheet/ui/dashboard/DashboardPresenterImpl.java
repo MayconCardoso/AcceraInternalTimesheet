@@ -1,15 +1,11 @@
 package br.com.accera.internaltimesheet.ui.dashboard;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
 
 import javax.inject.Inject;
 
-import br.com.accera.core.presentation.ui.baseview.BasePresenterImpl;
 import br.com.accera.core.presentation.utilities.DateUtilFormat;
-import br.com.accera.core.presentation.utilities.LocaleUtil;
+import br.com.accera.internaltimesheet.R;
 import br.com.accera.internaltimesheet.ui.base.BaseTimesheetPresenter;
 
 /**
@@ -23,10 +19,38 @@ public class DashboardPresenterImpl extends BaseTimesheetPresenter<DashboardCont
     }
 
     @Override
-    public void receiveClick() {
-        final Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis( System.currentTimeMillis());
-        String registeredhour = String.format( "%02d:%02d:%02d", calendar.get( Calendar.HOUR_OF_DAY ), calendar.get( Calendar.MINUTE ), calendar.get( Calendar.SECOND ) ); //HOUR_OF_DAY é a hora no formato de 24 horas.
+    public void receiveClick(Boolean time) {
+        if (time){
+            mView.setTimeIn(DateUtilFormat.getHourMinuteSecondDashboard());
+        } else {
+            mView.setTimeOut(DateUtilFormat.getHourMinuteSecondDashboard());
+            setTimeDiff();
+        }
+
+    }
+
+    private void setTimeDiff() {
+        String timeDiff = getTimeDiff();
+
+        mView.setTimeDiff(timeDiff, getColor(timeDiff));
+    }
+
+    private String getTimeDiff() {
+        String hourOne = mView.getTextFromTextView(R.id.in_hour);
+        String hourTwo = mView.getTextFromTextView(R.id.out_hour);
+        return DateUtilFormat.getTimeDifference(hourOne, hourTwo);
+    }
+
+    private int getColor(String time){
+        String[] split = time.split(":");
+        int hour = Integer.parseInt(split[0]);
+        int minute = Integer.parseInt(split[1]);
+
+        if (hour+minute < 56){
+            return R.color.pomegranate;
+        } else {
+            return R.color.emerald;
+        }
     }
 
     @Override

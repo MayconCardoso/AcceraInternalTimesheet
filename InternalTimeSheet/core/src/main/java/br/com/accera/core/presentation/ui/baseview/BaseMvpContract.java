@@ -45,6 +45,14 @@ public interface BaseMvpContract {
          * @param error the error
          */
         void setErrorOnField(int id, String error);
+
+        /**
+         * Gets text from text view.
+         *
+         * @param id the id
+         * @return the text from text view
+         */
+        String getTextFromTextView(int id);
     }
 
     /**
