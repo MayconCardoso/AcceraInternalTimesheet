@@ -4,6 +4,8 @@ import android.databinding.ViewDataBinding;
 import android.os.Handler;
 import android.os.SystemClock;
 
+import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
+
 import java.util.Calendar;
 
 import javax.inject.Inject;
@@ -62,6 +64,10 @@ public class DashboardActivity extends BaseActivity<DashboardContract.View, Dash
         PushDownAnimHelper.createDefault(binding.outHour, v -> timeControl = false);
         PushDownAnimHelper.createDefault(binding.inHour, v -> timeControl = true);
         PushDownAnimHelper.createDefault(binding.imgClock, v -> mCorePresenter.receiveClick(timeControl));
+        PushDownAnimHelper.createDefault(binding.inEdit, v -> showTimePickerDialog((view, hourOfDay, minute, second)
+                -> mCorePresenter.editTimeIn(hourOfDay , minute, second)));
+        PushDownAnimHelper.createDefault(binding.outEdit, v -> showTimePickerDialog((view, hourOfDay, minute, second)
+                -> mCorePresenter.editTimeOut(hourOfDay , minute, second)) );
 
     }
 
@@ -90,7 +96,7 @@ public class DashboardActivity extends BaseActivity<DashboardContract.View, Dash
     }
 
 
-    private void startBedside() {
+        private void startBedside() {
         final Calendar calendar = Calendar.getInstance(); //instanciou o calendario do android
         // Runnable é uma interface. Consegue fazer interface pq no java é uma classe anônima. Uma classe anonima não precisa explicitamente escrever Runnable
         this.mRunnable = new Runnable() {
@@ -116,6 +122,19 @@ public class DashboardActivity extends BaseActivity<DashboardContract.View, Dash
             }
         };
         this.mRunnable.run();
+    }
+
+    private void showTimePickerDialog(TimePickerDialog.OnTimeSetListener onTimeChangedListener) {
+        Calendar now = Calendar.getInstance();
+        TimePickerDialog tpd = TimePickerDialog.newInstance(
+                onTimeChangedListener,
+                now.get(Calendar.HOUR_OF_DAY),
+                now.get(Calendar.MINUTE),
+                now.get(Calendar.SECOND),
+                true
+        );
+        tpd.setAccentColor(mResourceHelper.getColor(R.color.colorPrimaryDark));
+        tpd.show(getFragmentManager(), "Timepickerdialog");
     }
 
 }

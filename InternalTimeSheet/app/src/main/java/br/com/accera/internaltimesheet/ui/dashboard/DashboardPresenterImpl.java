@@ -26,12 +26,21 @@ public class DashboardPresenterImpl extends BaseTimesheetPresenter<DashboardCont
             mView.setTimeOut(DateUtilFormat.getHourMinuteSecondDashboard());
             setTimeDiff();
         }
+    }
 
+    @Override
+    public void editTimeIn(int h, int m, int s) {
+        mView.setTimeIn(DateUtilFormat.concatHourMinuteSecond(h,m,s));
+    }
+
+    @Override
+    public void editTimeOut(int h, int m, int s) {
+        mView.setTimeOut(DateUtilFormat.concatHourMinuteSecond(h,m,s));
+        setTimeDiff();
     }
 
     private void setTimeDiff() {
         String timeDiff = getTimeDiff();
-
         mView.setTimeDiff(timeDiff, getColor(timeDiff));
     }
 
@@ -43,8 +52,15 @@ public class DashboardPresenterImpl extends BaseTimesheetPresenter<DashboardCont
 
     private int getColor(String time){
         String[] split = time.split(":");
-        int hour = Integer.parseInt(split[0]);
-        int minute = Integer.parseInt(split[1]);
+        int hour = 0;
+        int minute = 0;
+
+        try {
+            hour = Integer.parseInt(split[0]);
+            minute = Integer.parseInt(split[1]);
+        } catch (NumberFormatException e){
+
+        }
 
         if (hour+minute < 56){
             return R.color.pomegranate;

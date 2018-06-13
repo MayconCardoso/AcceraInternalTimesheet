@@ -18,7 +18,7 @@ public class DateUtilFormat {
     }
 
     public static String getTimeDifference(String startDate, String endDate){
-        String s = "15/01/02 ";
+        String s = "13/06/18 ";
         try {
             DateFormat formatter = new SimpleDateFormat("yy/MM/dd HH:mm:ss");
             Date dateOne = formatter.parse(s+startDate);
@@ -71,5 +71,9 @@ public class DateUtilFormat {
             return "0" + i;
         }
         return i+"";
+    }
+
+    public static String concatHourMinuteSecond(int h, int m, int s){
+        return addZero(h) + ":" + addZero(m) + ":" + addZero(s);
     }
 }

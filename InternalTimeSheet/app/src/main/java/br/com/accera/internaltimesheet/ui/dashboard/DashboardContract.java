@@ -17,6 +17,8 @@ public interface DashboardContract {
 
     interface Presenter extends BaseMvpContract.Presenter<View>{
         void receiveClick(Boolean time);
+        void editTimeIn(int h, int m, int s);
+        void editTimeOut(int h, int m, int s);
 
     }
 }
