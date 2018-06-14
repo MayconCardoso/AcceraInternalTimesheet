@@ -17,7 +17,7 @@
     <string name="start">Vamos Lá!</string>
     <string name="data_cabecalho">Quinta-feira, 24 de maio de 2018</string>
     <string name="message_touchclock">Clique no relogio para registrar a jornada</string>
-    <string name="hora_molde">00:00</string>
+    <string name="hora_molde">00:00:00</string>
     <string name="no_name">Insira um Nome!</string>
     <string name="no_journey_init">Insira um dia para o inicio da jornada!</string>
     <string name="no_journey_end">Insira um dia para o final da jornada!</string>

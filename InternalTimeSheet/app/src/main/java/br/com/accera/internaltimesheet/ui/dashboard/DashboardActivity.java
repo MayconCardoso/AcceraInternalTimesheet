@@ -4,18 +4,19 @@ import android.databinding.ViewDataBinding;
 import android.os.Handler;
 import android.os.SystemClock;
 
-import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
-
-import java.util.Calendar;
+import com.appolica.flubber.Flubber;
 
 import javax.inject.Inject;
 
 import br.com.accera.core.presentation.ui.baseview.BaseActivity;
 import br.com.accera.core.presentation.utilities.DataBindResolverInstance;
+import br.com.accera.core.presentation.utilities.DateUtilFormat;
 import br.com.accera.core.providers.network.NetworkInfoProvider;
 import br.com.accera.internaltimesheet.R;
 import br.com.accera.internaltimesheet.databinding.ActivityDashboardBinding;
+import br.com.accera.internaltimesheet.ui.animation.FlubberAnimHelper;
 import br.com.accera.internaltimesheet.ui.animation.PushDownAnimHelper;
+import br.com.accera.internaltimesheet.ui.helpers.DateTimeDialogHelper;
 
 public class DashboardActivity extends BaseActivity<DashboardContract.View, DashboardContract.Presenter> implements DashboardContract.View{
     private Handler mHandler = new Handler();
@@ -60,14 +61,19 @@ public class DashboardActivity extends BaseActivity<DashboardContract.View, Dash
     @Override
     protected void onDataBindingReady(ViewDataBinding coreDataBinding) {
         binding = DataBindResolverInstance.getBinding(ActivityDashboardBinding.class, coreDataBinding);
+        int colorDialog = mResourceHelper.getColor(R.color.colorPrimaryDark);
 
-        PushDownAnimHelper.createDefault(binding.outHour, v -> timeControl = false);
-        PushDownAnimHelper.createDefault(binding.inHour, v -> timeControl = true);
+//        PushDownAnimHelper.create(binding.outHour, v -> timeControl = false);
+//        PushDownAnimHelper.create(binding.inHour, v -> timeControl = true);
         PushDownAnimHelper.createDefault(binding.imgClock, v -> mCorePresenter.receiveClick(timeControl));
-        PushDownAnimHelper.createDefault(binding.inEdit, v -> showTimePickerDialog((view, hourOfDay, minute, second)
-                -> mCorePresenter.editTimeIn(hourOfDay , minute, second)));
-        PushDownAnimHelper.createDefault(binding.outEdit, v -> showTimePickerDialog((view, hourOfDay, minute, second)
-                -> mCorePresenter.editTimeOut(hourOfDay , minute, second)) );
+
+        PushDownAnimHelper.createDefault(binding.inEdit, v -> DateTimeDialogHelper.showTimePickerDialogDefault(colorDialog,
+                (view, hourOfDay, minute, second) -> mCorePresenter.editTimeIn(hourOfDay , minute, 0))
+                .show(getFragmentManager(), "td"));
+
+        PushDownAnimHelper.createDefault(binding.outEdit, v -> DateTimeDialogHelper.showTimePickerDialogDefault(colorDialog,
+                (view, hourOfDay, minute, second) -> mCorePresenter.editTimeOut(hourOfDay , minute, 0))
+                .show(getFragmentManager(), "td"));
 
     }
 
@@ -78,6 +84,7 @@ public class DashboardActivity extends BaseActivity<DashboardContract.View, Dash
 
     @Override
     public void setTimeIn(String time) {
+        FlubberAnimHelper.create(binding.inHour, 100, Flubber.AnimationPreset.POP);
         binding.inHour.setText(time);
         binding.inHour.setTextColor(mResourceHelper.getColor(R.color.colorPrimary));
         timeControl = false;
@@ -85,56 +92,32 @@ public class DashboardActivity extends BaseActivity<DashboardContract.View, Dash
 
     @Override
     public void setTimeOut(String time) {
+        FlubberAnimHelper.create(binding.outHour, 100, Flubber.AnimationPreset.POP);
         binding.outHour.setText(time);
         binding.outHour.setTextColor(mResourceHelper.getColor(R.color.colorPrimary));
     }
 
     @Override
     public void setTimeDiff(String time, int color) {
+        FlubberAnimHelper.create(binding.totalHours, 600, Flubber.AnimationPreset.MORPH);
         binding.totalHours.setText(time);
         binding.totalHours.setTextColor(mResourceHelper.getColor(color));
     }
 
 
         private void startBedside() {
-        final Calendar calendar = Calendar.getInstance(); //instanciou o calendario do android
         // Runnable é uma interface. Consegue fazer interface pq no java é uma classe anônima. Uma classe anonima não precisa explicitamente escrever Runnable
-        this.mRunnable = new Runnable() {
-            @Override
-            public void run() {
+        this.mRunnable = () -> {
 
-                if( mRunnableStopped ) return;
+            if( mRunnableStopped ) return;
 
+            binding.horaMolde.setText( DateUtilFormat.getHourMinuteSecondDashboard() );
+            long now = SystemClock.uptimeMillis();
+            long next = SystemClock.uptimeMillis() + (1000 - (now % 1000)); //este calculo faz cair no milisegundo 0 do proximo segundo.
+            mHandler.postAtTime( mRunnable, next );
 
-                calendar.setTimeInMillis( System.currentTimeMillis() ); //pegou o equivalente da hora em millisegundos
-
-                String hourMinutesFormat = String.format( "%02d:%02d:%02d", calendar.get( Calendar.HOUR_OF_DAY ), calendar.get( Calendar.MINUTE ), calendar.get( Calendar.SECOND ) ); //HOUR_OF_DAY é a hora no formato de 24 horas.
-
-                //  mViewHolder.mTextHourMinute.setText(hourMinutesFormat);
-                //  mViewHolder.mTextSeconds.setText(secondsFormat);
-
-                binding.horaMolde.setText( hourMinutesFormat );
-
-                long now = SystemClock.uptimeMillis();
-                long next = now + (1000 - (now % 1000)); //este calculo faz cair no milisegundo 0 do proximo segundo.
-
-                mHandler.postAtTime( mRunnable, next );
-            }
         };
         this.mRunnable.run();
-    }
-
-    private void showTimePickerDialog(TimePickerDialog.OnTimeSetListener onTimeChangedListener) {
-        Calendar now = Calendar.getInstance();
-        TimePickerDialog tpd = TimePickerDialog.newInstance(
-                onTimeChangedListener,
-                now.get(Calendar.HOUR_OF_DAY),
-                now.get(Calendar.MINUTE),
-                now.get(Calendar.SECOND),
-                true
-        );
-        tpd.setAccentColor(mResourceHelper.getColor(R.color.colorPrimaryDark));
-        tpd.show(getFragmentManager(), "Timepickerdialog");
     }
 
 }

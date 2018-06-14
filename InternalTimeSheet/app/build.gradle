@@ -58,6 +58,7 @@ dependencies {
     implementation(globalDependencies.viewPushDownAnimeClick) {
         exclude group: 'com.android.support'
     }
+    implementation globalDependencies.flubber
     // Dagger
     annotationProcessor globalDependencies.daggerKotlinCompile
     annotationProcessor globalDependencies.dagger2SupportCompile

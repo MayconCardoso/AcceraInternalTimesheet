@@ -52,7 +52,7 @@ public class DateUtilFormat {
 //                "%d hours, %d minutes, %d seconds%n",
 //                elapsedHours, elapsedMinutes, elapsedSeconds);
 
-        return  addZero((int) elapsedHours) + ":" + addZero((int) elapsedMinutes) + ":" + addZero((int) elapsedSeconds);
+        return concatHourMinuteSecond((int)elapsedHours,(int)elapsedMinutes,(int)elapsedSeconds);
 
         } catch (ParseException e) {
             e.printStackTrace();
@@ -67,14 +67,28 @@ public class DateUtilFormat {
     }
 
     public static String addZero(int i){
-        if (i < 10){
+        if (i < 0){
+            i = i*-1;
+        }
+        if (i < 10 && i >= 0){
             return "0" + i;
         }
         return i+"";
     }
 
+    public static String addZeroHour(int i){
+        if (i < 10 && i >= 0){
+            return "0" + i;
+        }
+        if (i < 0 && i >= -10){
+            return "-0"+ i*-1;
+        }
+        return i+"";
+    }
+
+
     public static String concatHourMinuteSecond(int h, int m, int s){
-        return addZero(h) + ":" + addZero(m) + ":" + addZero(s);
+        return addZeroHour(h) + ":" + addZero(m) + ":" + addZero(s);
     }
 
     public static String concatDayMonthYear(int d, int m, int y){

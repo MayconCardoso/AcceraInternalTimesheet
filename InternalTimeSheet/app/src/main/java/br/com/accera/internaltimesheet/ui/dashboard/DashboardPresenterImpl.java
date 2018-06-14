@@ -62,7 +62,7 @@ public class DashboardPresenterImpl extends BaseTimesheetPresenter<DashboardCont
 
         }
 
-        if (hour+minute < 56){
+        if (hour*minute < 360){
             return R.color.pomegranate;
         } else {
             return R.color.emerald;

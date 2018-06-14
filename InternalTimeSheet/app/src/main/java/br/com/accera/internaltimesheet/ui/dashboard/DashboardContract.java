@@ -19,6 +19,5 @@ public interface DashboardContract {
         void receiveClick(Boolean time);
         void editTimeIn(int h, int m, int s);
         void editTimeOut(int h, int m, int s);
-
     }
 }
