@@ -3,17 +3,14 @@ package br.com.accera.internaltimesheet.ui.main;
 import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 
-import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
-import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
-
-import java.util.Calendar;
-
 import br.com.accera.core.presentation.ui.baseview.BaseActivity;
 import br.com.accera.core.presentation.utilities.DataBindResolverInstance;
+import br.com.accera.core.presentation.utilities.DateUtilFormat;
 import br.com.accera.internaltimesheet.R;
 import br.com.accera.internaltimesheet.User;
 import br.com.accera.internaltimesheet.databinding.ActivityMainBinding;
 import br.com.accera.internaltimesheet.ui.animation.PushDownAnimHelper;
+import br.com.accera.internaltimesheet.ui.helpers.DateTimeDialogHelper;
 
 public class MainActivity extends BaseActivity<MainContract.View, MainContract.Presenter> implements MainContract.View {
 
@@ -52,6 +49,9 @@ public class MainActivity extends BaseActivity<MainContract.View, MainContract.P
 
     @Override
     protected void onDataBindingReady(ViewDataBinding coreDataBinding) {
+        int colorDialog = mResourceHelper.getColor(R.color.pumpkin);
+        String datepickerdialog = "Datepickerdialog";
+        String timepickerdialog = "Timepickerdialog";
         binding = DataBindResolverInstance.getBinding(ActivityMainBinding.class, coreDataBinding);
         binding.setCadastro(new User());
         User obj = new User();
@@ -64,57 +64,25 @@ public class MainActivity extends BaseActivity<MainContract.View, MainContract.P
                 binding.getCadastro().endInterval,
                 binding.getCadastro().endJourney)));
 
-        binding.startJourney.setOnClickListener(v -> {
-            showDatePickerDialog((view, year, monthOfYear, dayOfMonth) -> {
-                String date = dayOfMonth + "/" + (monthOfYear + 1) + "/" + year;
-                binding.startJourney.setText(date);
-            });
-        });
-
-        binding.endJourney.setOnClickListener(v -> {
-            showDatePickerDialog((view, year, monthOfYear, dayOfMonth) -> {
-                String date = dayOfMonth + "/" + (monthOfYear + 1) + "/" + year;
-                binding.endJourney.setText(date);
-            });
-        });
-
-        binding.endInterval.setOnClickListener(v -> {
-            showTimePickerDialog((view, hourOfDay, minute, second) -> {
-                String time = hourOfDay + "h" + minute + "m" + second;
-                binding.endInterval.setText(time);
-            });
-        });
-
-        binding.startInterval.setOnClickListener(v -> {
-            showTimePickerDialog((view, hourOfDay, minute, second) -> {
-                String time = hourOfDay + "h" + minute + "m" + second;
-                binding.startInterval.setText(time);
-            });
-        });
-    }
-
-    private void showDatePickerDialog(DatePickerDialog.OnDateSetListener onDateSetListener) {
-        Calendar now = Calendar.getInstance();
-        DatePickerDialog dpd = DatePickerDialog.newInstance(
-                onDateSetListener,
-                now.get(Calendar.YEAR),
-                now.get(Calendar.MONTH),
-                now.get(Calendar.DAY_OF_MONTH)
+        binding.startJourney.setOnClickListener(v -> DateTimeDialogHelper.DatePickerDialogDefault(colorDialog,
+                (view, year, monthOfYear, dayOfMonth) -> binding.startJourney.setText(DateUtilFormat.concatDayMonthYear(dayOfMonth,monthOfYear,year)))
+                .show(getFragmentManager(), datepickerdialog)
         );
-        dpd.setAccentColor(mResourceHelper.getColor(R.color.pumpkin));
-        dpd.show(getFragmentManager(), "Datepickerdialog");
+
+        binding.endJourney.setOnClickListener(v -> DateTimeDialogHelper.DatePickerDialogDefault(colorDialog,
+                (view, year, monthOfYear, dayOfMonth) -> binding.endJourney.setText(DateUtilFormat.concatDayMonthYear(dayOfMonth, monthOfYear, year)))
+                .show(getFragmentManager(), datepickerdialog)
+        );
+
+        binding.endInterval.setOnClickListener(v -> DateTimeDialogHelper.showTimePickerDialogDefault(colorDialog,
+                (view, hourOfDay, minute, second) -> binding.endInterval.setText(DateUtilFormat.concatHourMinuteSecond(hourOfDay,minute,0)))
+                .show(getFragmentManager(), timepickerdialog)
+        );
+
+        binding.startInterval.setOnClickListener(v -> DateTimeDialogHelper.showTimePickerDialogDefault(colorDialog,
+                (view, hourOfDay, minute, second) -> binding.startInterval.setText(DateUtilFormat.concatHourMinuteSecond(hourOfDay,minute,0)))
+                .show(getFragmentManager(), timepickerdialog));
+
     }
 
-    private void showTimePickerDialog(TimePickerDialog.OnTimeSetListener onTimeChangedListener) {
-        Calendar now = Calendar.getInstance();
-        TimePickerDialog tpd = TimePickerDialog.newInstance(
-                onTimeChangedListener,
-                now.get(Calendar.HOUR_OF_DAY),
-                now.get(Calendar.MINUTE),
-                now.get(Calendar.SECOND),
-                true
-        );
-        tpd.setAccentColor(mResourceHelper.getColor(R.color.pumpkin));
-        tpd.show(getFragmentManager(), "Timepickerdialog");
-    }
 }

@@ -10,25 +10,28 @@ import java.util.Calendar;
  */
 public class DateTimeDialogHelper {
 
-    public static DatePickerDialog DatePickerDialogDefault(DatePickerDialog.OnDateSetListener onDateSetListener) {
+    public static DatePickerDialog DatePickerDialogDefault(int color, DatePickerDialog.OnDateSetListener onDateSetListener) {
         Calendar now = Calendar.getInstance();
-        return DatePickerDialog.newInstance(
+        DatePickerDialog datePickerDialog = DatePickerDialog.newInstance(
                 onDateSetListener,
                 now.get(Calendar.YEAR),
                 now.get(Calendar.MONTH),
                 now.get(Calendar.DAY_OF_MONTH)
         );
-
+        datePickerDialog.setAccentColor(color);
+        return datePickerDialog;
     }
 
-    public static TimePickerDialog showTimePickerDialogDefault(TimePickerDialog.OnTimeSetListener onTimeChangedListener) {
+    public static TimePickerDialog showTimePickerDialogDefault(int color, TimePickerDialog.OnTimeSetListener onTimeChangedListener) {
         Calendar now = Calendar.getInstance();
-        return TimePickerDialog.newInstance(
+        TimePickerDialog timePickerDialog = TimePickerDialog.newInstance(
                 onTimeChangedListener,
                 now.get(Calendar.HOUR_OF_DAY),
                 now.get(Calendar.MINUTE),
                 now.get(Calendar.SECOND),
                 true
         );
+        timePickerDialog.setAccentColor(color);
+        return timePickerDialog;
     }
 }

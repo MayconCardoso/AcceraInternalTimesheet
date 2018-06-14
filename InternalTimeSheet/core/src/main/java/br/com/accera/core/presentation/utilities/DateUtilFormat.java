@@ -76,4 +76,8 @@ public class DateUtilFormat {
     public static String concatHourMinuteSecond(int h, int m, int s){
         return addZero(h) + ":" + addZero(m) + ":" + addZero(s);
     }
+
+    public static String concatDayMonthYear(int d, int m, int y){
+        return addZero(d) + "/" + addZero(m+1) + "/" + addZero(y);
+    }
 }
