@@ -10,7 +10,7 @@ import javax.inject.Inject;
 
 import br.com.accera.core.presentation.ui.baseview.BaseActivity;
 import br.com.accera.core.presentation.utilities.DataBindResolverInstance;
-import br.com.accera.core.presentation.utilities.DateUtilFormat;
+import br.com.accera.core.presentation.utilities.DateUtil;
 import br.com.accera.core.providers.network.NetworkInfoProvider;
 import br.com.accera.internaltimesheet.R;
 import br.com.accera.internaltimesheet.databinding.ActivityDashboardBinding;
@@ -111,7 +111,7 @@ public class DashboardActivity extends BaseActivity<DashboardContract.View, Dash
 
             if( mRunnableStopped ) return;
 
-            binding.horaMolde.setText( DateUtilFormat.getHourMinuteSecondDashboard() );
+            binding.horaMolde.setText( DateUtil.getHourMinuteSecondDashboard() );
             long now = SystemClock.uptimeMillis();
             long next = SystemClock.uptimeMillis() + (1000 - (now % 1000)); //este calculo faz cair no milisegundo 0 do proximo segundo.
             mHandler.postAtTime( mRunnable, next );

@@ -60,6 +60,7 @@ dependencies {
     }
     implementation globalDependencies.flubber
     // Dagger
+    implementation 'com.android.support.constraint:constraint-layout:1.1.1'
     annotationProcessor globalDependencies.daggerKotlinCompile
     annotationProcessor globalDependencies.dagger2SupportCompile
     // Fabric

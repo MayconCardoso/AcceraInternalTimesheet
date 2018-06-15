@@ -4,7 +4,7 @@ import java.util.Calendar;
 
 import javax.inject.Inject;
 
-import br.com.accera.core.presentation.utilities.DateUtilFormat;
+import br.com.accera.core.presentation.utilities.DateUtil;
 import br.com.accera.internaltimesheet.R;
 import br.com.accera.internaltimesheet.ui.base.BaseTimesheetPresenter;
 
@@ -21,21 +21,21 @@ public class DashboardPresenterImpl extends BaseTimesheetPresenter<DashboardCont
     @Override
     public void receiveClick(Boolean time) {
         if (time){
-            mView.setTimeIn(DateUtilFormat.getHourMinuteSecondDashboard());
+            mView.setTimeIn(DateUtil.getHourMinuteSecondDashboard());
         } else {
-            mView.setTimeOut(DateUtilFormat.getHourMinuteSecondDashboard());
+            mView.setTimeOut(DateUtil.getHourMinuteSecondDashboard());
             setTimeDiff();
         }
     }
 
     @Override
     public void editTimeIn(int h, int m, int s) {
-        mView.setTimeIn(DateUtilFormat.concatHourMinuteSecond(h,m,s));
+        mView.setTimeIn(DateUtil.concatHourMinuteSecond(h,m,s));
     }
 
     @Override
     public void editTimeOut(int h, int m, int s) {
-        mView.setTimeOut(DateUtilFormat.concatHourMinuteSecond(h,m,s));
+        mView.setTimeOut(DateUtil.concatHourMinuteSecond(h,m,s));
         setTimeDiff();
     }
 
@@ -47,25 +47,14 @@ public class DashboardPresenterImpl extends BaseTimesheetPresenter<DashboardCont
     private String getTimeDiff() {
         String hourOne = mView.getTextFromTextView(R.id.in_hour);
         String hourTwo = mView.getTextFromTextView(R.id.out_hour);
-        return DateUtilFormat.getTimeDifference(hourOne, hourTwo);
+        return DateUtil.getTimeDifference(hourOne, hourTwo);
     }
 
     private int getColor(String time){
-        String[] split = time.split(":");
-        int hour = 0;
-        int minute = 0;
-
-        try {
-            hour = Integer.parseInt(split[0]);
-            minute = Integer.parseInt(split[1]);
-        } catch (NumberFormatException e){
-
-        }
-
-        if (hour*minute < 360){
-            return R.color.pomegranate;
-        } else {
+        if (DateUtil.calcHourMin(time)){
             return R.color.emerald;
+        } else {
+            return R.color.pomegranate;
         }
     }
 
@@ -74,7 +63,7 @@ public class DashboardPresenterImpl extends BaseTimesheetPresenter<DashboardCont
         super.onViewAttached();
         // Carrega a jornada
 
-        mView.showSpecifcMessage(DateUtilFormat.getBrazilianFormatedString(Calendar.getInstance().getTime()));
+        mView.showSpecifcMessage(DateUtil.getBrazilianFormatedString(Calendar.getInstance().getTime()));
 
 
 
