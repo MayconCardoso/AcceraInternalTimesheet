@@ -8,14 +8,15 @@ ext {
     CORDINATOR_LAYOUT_VERSION               = '1.1.0'
     FLOAT_ACTION_BUTTON_VERSION             = '1.2.0'
     PUSH_DOWN_ANIME                         = '1.1.1'
-
+    FLUBBER                                 = '1.0.1'
+    SHAPE_OF_VIEW                           = '1.1.2'
     // Android Helpers
     CRASHLYTICS_VERSION                     = '2.9.2@aar'
     DAGGER_VERSION                          = '2.16'
     RXJAVA_VERSION                          = '2.0.2'
     LEAK_CANARY                             = '1.5.4'
     ANNOTATION_JSR250_VERSION               = '1.0'
-    FLUBBER                                 = '1.0.1'
+
 
     //==============================================================================================
     //
@@ -47,6 +48,7 @@ ext {
             viewFloatActionButton           : "com.github.joaquimley:faboptions:${FLOAT_ACTION_BUTTON_VERSION}",
             viewPushDownAnimeClick          : "com.github.thekhaeng:pushdown-anim-click:${PUSH_DOWN_ANIME}",
             viewDateTimePicker              : "com.wdullaer:materialdatetimepicker:3.6.0",
+            shapeOfView                     : "com.github.florent37:shapeofview:${SHAPE_OF_VIEW}",
 
             // Rx
             rxAndroid                       : "io.reactivex.rxjava2:rxandroid:${RXJAVA_VERSION}",

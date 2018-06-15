@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="br.com.accera.internaltimesheet">
 
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".nucleo.TimesheetApplication"
@@ -11,21 +12,23 @@
         android:roundIcon="@mipmap/ic_app_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.main.MainActivity">
+        <activity android:name=".ui.main.MainActivity"></activity>
 
-        </activity>
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="68f48c119d6a2f905cb2f9c90e35ceb0b15ef516" />
-        <activity android:name=".ui.dashboard.DashboardActivity" >
+
+        <activity android:name=".ui.dashboard.DashboardActivity">
+
+        </activity>
+        <activity android:name=".DetailsActivity" />
+        <activity android:name=".ui.login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DetailsActivity"></activity>
     </application>
 
-    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>

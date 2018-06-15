@@ -61,7 +61,7 @@ public class MainPresenterImpl extends BaseTimesheetPresenter<MainContract.View>
             @Override
             public void onComplete() {
                 mView.getAlertHelper().hideLoading();
-                mFlowNavigator.goToDashboard();
+                mFlowNavigator.goToLogin();
             }
         });
     }

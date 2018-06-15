@@ -12,8 +12,9 @@
     <string name="welcome">Criar uma conta</string>
     <string name="basic_information">Já possui uma conta? Clique aqui</string>
     <string name="name">Nome</string>
-    <string name="start_interval">Inicio de Intervalo:</string>
-    <string name="end_interval">Fim de Intervalo:</string>
+    <string name="start_interval">Inicio de Intervalo</string>
+    <string name="end_interval">Fim de Intervalo</string>
+    <string name="end_journey">Fim da Jornada</string>
     <string name="start">Vamos Lá!</string>
     <string name="data_cabecalho">Quinta-feira, 24 de maio de 2018</string>
     <string name="message_touchclock">Clique no relogio para registrar a jornada</string>
@@ -23,5 +24,7 @@
     <string name="no_journey_end">Insira um dia para o final da jornada!</string>
     <string name="no_interval_init">Insira o horário de inicio da jornada!</string>
     <string name="no_interval_end">Insira o horário de fim da jornada!</string>
+    <string name="login">Login</string>
+    <string name="register">Cadastro</string>
 
 </resources>

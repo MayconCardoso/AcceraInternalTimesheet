@@ -24,6 +24,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary true
     }
     buildTypes {
         release {
@@ -52,6 +53,7 @@ android {
 dependencies {
     implementation project(':core')
     // View
+    implementation globalDependencies.shapeOfView
     implementation globalDependencies.viewCordinator
     implementation globalDependencies.viewDateTimePicker
     implementation globalDependencies.viewFloatActionButton

@@ -154,7 +154,7 @@
                 android:layout_below="@id/end_journey"
                 android:layout_marginTop="20sp"
                 android:layout_gravity="center_horizontal|bottom"
-                android:background="@drawable/rounded_button"
+                android:background="@drawable/rounded_button_green"
                 android:gravity="center"
                 android:text="@string/start"
                 android:textColor="@color/grey" />
