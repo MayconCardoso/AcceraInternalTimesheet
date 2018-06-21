@@ -8,12 +8,14 @@ import br.com.accera.core.presentation.ui.helpers.resource.ResourceHelper;
 
 /**
  * The interface Base mvp contract.
+ *
  * @author MAYCON CARDOSO on 15/05/2018.
  */
 public interface BaseMvpContract {
 
     /**
      * The interface Base view.
+     *
      * @author MAYCON CARDOSO on 15/05/2018.
      */
     interface View {
@@ -35,6 +37,22 @@ public interface BaseMvpContract {
          * Show alert dont has internet.
          */
         void showAlertDontHasInternet();
+
+        /**
+         * Sets error on field.
+         *
+         * @param id    the id
+         * @param error the error
+         */
+        void setErrorOnField(int id, String error);
+
+        /**
+         * Gets text from text view.
+         *
+         * @param id the id
+         * @return the text from text view
+         */
+        String getTextFromTextView(int id);
     }
 
     /**

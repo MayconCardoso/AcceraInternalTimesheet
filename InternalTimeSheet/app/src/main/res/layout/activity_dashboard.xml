@@ -1,88 +1,198 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/grey"
-    tools:context=".ui.dashboard.DashboardActivity">
-
-    <android.support.design.widget.CollapsingToolbarLayout
-        android:layout_width="match_parent"
-        android:layout_height="475dp"
-        android:background="@color/colorPrimary"
-        app:contentScrim="?attr/colorPrimary"
-        app:expandedTitleTextAppearance="@android:color/transparent"
-        android:fitsSystemWindows="true">
-
-    </android.support.design.widget.CollapsingToolbarLayout>
-
-    <com.joaquimley.faboptions.FabOptions
-        android:id="@+id/fab_options"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:fab_color="@color/fabOptionsFabColor"
-        app:button_menu="@menu/your_fab_buttons"
-        android:scaleX="1.2"
-        android:scaleY="1.2"
-        android:layout_marginTop="495sp"
-        android:layout_gravity="center_horizontal"/>
-
-    <TextView
-        android:id="@+id/info_hour_bank"
+    xmlns:tools="http://schemas.android.com/tools">
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:layout_marginTop="95sp"
-        android:text="@string/message_touchclock"
-        android:textSize="16sp"/>
+        android:background="@color/grey"
+        tools:context=".ui.dashboard.DashboardActivity">
 
-    <TextView
-        android:id="@+id/data_cabecalho"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:textColor="@color/white"
-        android:textAlignment="center"
-        android:layout_marginTop="60sp"
-        android:text="@string/data_cabecalho"
-        android:textSize="23sp"
-        android:textStyle="bold" />
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/collapsingToolbarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="475dp"
+            android:background="@color/colorPrimary"
+            android:fitsSystemWindows="true"
+            app:contentScrim="?attr/colorPrimary"
+            app:expandedTitleTextAppearance="@android:color/transparent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:orientation="vertical"
-        android:layout_height="wrap_content">
+        </android.support.design.widget.CollapsingToolbarLayout>
+
+        <TextView
+            android:id="@+id/info_hour_bank"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/message_touchclock"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/data_cabecalho" />
+
+        <TextView
+            android:id="@+id/data_cabecalho"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="24dp"
+            android:text="@string/data_cabecalho"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="23sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.517"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/img_clock"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleX="0.65"
-            android:scaleY="0.65"
-            android:clickable="true"
+            android:layout_width="0dp"
+            android:layout_height="290dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="15sp"
-            android:layout_marginRight="-1sp"
+            android:adjustViewBounds="true"
+            android:clickable="true"
+            android:scaleX="0.85"
+            android:scaleY="0.85"
             android:src="@drawable/ic_clock"
-            />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/info_hour_bank" />
+
         <TextView
             android:id="@+id/hora_molde"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:textAlignment="center"
             android:layout_weight="4"
-            android:layout_marginTop="-130sp"
             android:text="@string/hora_molde"
-            android:textSize="50sp"/>
-    </LinearLayout>
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="50sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/img_clock" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/hora_molde">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:text="Horário de Entrada"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:text="Horário de Saída"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+            <TextView
+                android:id="@+id/in_hour"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:text="@string/hora_molde"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="30sp" />
+            <ImageView
+                android:id="@+id/in_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ic_edit_black" />
+            <TextView
+                android:id="@+id/out_hour"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:text="@string/hora_molde"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="30sp" />
+
+            <ImageView
+                android:id="@+id/out_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ic_edit_black"/>
 
 
-</android.support.design.widget.CoordinatorLayout>
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/total_hours"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_weight="4"
+            android:text="@string/hora_molde"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+
+
+        <com.joaquimley.faboptions.FabOptions
+            android:id="@+id/fab_options"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_color="@color/fabOptionsFabColor"
+            app:button_menu="@menu/your_fab_buttons"
+            android:scaleX="1.2"
+            android:scaleY="1.2"
+            android:layout_marginTop="495sp"
+            android:layout_gravity="center_horizontal"
+            android:visibility="gone"/>
+
+
+
+    </android.support.constraint.ConstraintLayout>
+
 
 </layout>

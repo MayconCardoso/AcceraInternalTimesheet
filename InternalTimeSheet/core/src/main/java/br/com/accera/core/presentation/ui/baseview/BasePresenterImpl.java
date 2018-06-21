@@ -21,7 +21,7 @@ import io.reactivex.disposables.CompositeDisposable;
  * @param <VIEW> the type parameter
  * @author MAYCON CARDOSO on 15/05/2018.
  */
-public abstract class BasePresenterImpl<VIEW extends BaseMvpContract.View> implements BaseMvpContract.Presenter<VIEW> {
+public abstract class BasePresenterImpl<VIEW extends BaseMvpContract.View, NAVIGATOR extends FlowNavigator> implements BaseMvpContract.Presenter<VIEW> {
     //==============================================================================================
     // OBJETOS
     //==============================================================================================
@@ -42,7 +42,7 @@ public abstract class BasePresenterImpl<VIEW extends BaseMvpContract.View> imple
     /**
      * The M flow navigator.
      */
-    protected FlowNavigator mFlowNavigator;
+    protected NAVIGATOR mFlowNavigator;
     /**
      * The View.
      */
@@ -131,7 +131,7 @@ public abstract class BasePresenterImpl<VIEW extends BaseMvpContract.View> imple
      * @param flowNavigator the flow navigator
      */
     @Inject
-    public void setFlowNavigator( FlowNavigator flowNavigator ) {
+    public void setFlowNavigator( NAVIGATOR flowNavigator ) {
         mFlowNavigator = flowNavigator;
     }
 

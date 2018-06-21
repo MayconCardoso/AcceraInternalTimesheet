@@ -5,49 +5,49 @@ package br.com.accera.data.user;
  */
 
 public class UserDto {
-    public String Nome;
-    public String Diainit;
-    public String Diaend;
-    public String Intervaloinit;
-    public String Intervaloend;
+    public String name;
+    public String startJourney;
+    public String endJourney;
+    public String startInterval;
+    public String endInterval;
 
-    public String getNome() {
-        return Nome;
+    public String getName() {
+        return name;
     }
 
-    public void setNome(String nome) {
-        Nome = nome;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getDiainit() {
-        return Diainit;
+    public String getStartJourney() {
+        return startJourney;
     }
 
-    public void setDiainit(String diainit) {
-        Diainit = diainit;
+    public void setStartJourney(String startJourney) {
+        this.startJourney = startJourney;
     }
 
-    public String getDiaend() {
-        return Diaend;
+    public String getEndJourney() {
+        return endJourney;
     }
 
-    public void setDiaend(String diaend) {
-        Diaend = diaend;
+    public void setEndJourney(String endJourney) {
+        this.endJourney = endJourney;
     }
 
-    public String getIntervaloinit() {
-        return Intervaloinit;
+    public String getStartInterval() {
+        return startInterval;
     }
 
-    public void setIntervaloinit(String intervaloinit) {
-        Intervaloinit = intervaloinit;
+    public void setStartInterval(String startInterval) {
+        this.startInterval = startInterval;
     }
 
-    public String getIntervaloend() {
-        return Intervaloend;
+    public String getEndInterval() {
+        return endInterval;
     }
 
-    public void setIntervaloend(String intervaloend) {
-        Intervaloend = intervaloend;
+    public void setEndInterval(String endInterval) {
+        this.endInterval = endInterval;
     }
 }

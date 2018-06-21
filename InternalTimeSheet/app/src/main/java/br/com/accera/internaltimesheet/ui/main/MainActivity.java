@@ -1,27 +1,16 @@
 package br.com.accera.internaltimesheet.ui.main;
 
-import android.content.Intent;
-import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-
-import com.thekhaeng.pushdownanim.PushDownAnim;
-
-import javax.inject.Inject;
 
 import br.com.accera.core.presentation.ui.baseview.BaseActivity;
 import br.com.accera.core.presentation.utilities.DataBindResolverInstance;
-import br.com.accera.core.providers.network.NetworkInfoProvider;
+import br.com.accera.core.presentation.utilities.DateUtil;
 import br.com.accera.internaltimesheet.R;
 import br.com.accera.internaltimesheet.User;
-import br.com.accera.internaltimesheet.databinding.ActivityDashboardBinding;
 import br.com.accera.internaltimesheet.databinding.ActivityMainBinding;
-import br.com.accera.internaltimesheet.ui.dashboard.DashboardActivity;
-import br.com.accera.internaltimesheet.ui.dashboard.DashboardContract;
-
-import static com.thekhaeng.pushdownanim.PushDownAnim.MODE_SCALE;
+import br.com.accera.internaltimesheet.ui.animation.PushDownAnimHelper;
+import br.com.accera.internaltimesheet.ui.helpers.DateTimeDialogHelper;
 
 public class MainActivity extends BaseActivity<MainContract.View, MainContract.Presenter> implements MainContract.View {
 
@@ -32,7 +21,6 @@ public class MainActivity extends BaseActivity<MainContract.View, MainContract.P
     protected boolean hasToolbar() {
         return false;
     }
-
 
     @Override
     protected MainContract.View getContractView() {
@@ -51,15 +39,51 @@ public class MainActivity extends BaseActivity<MainContract.View, MainContract.P
     }
 
     @Override
+    public void cleanAllErrors() {
+        binding.name.setError(null);
+        binding.startJourney.setError(null);
+        binding.startInterval.setError(null);
+        binding.endInterval.setError(null);
+        binding.endJourney.setError(null);
+    }
+
+    @Override
     protected void onDataBindingReady(ViewDataBinding coreDataBinding) {
+        int colorDialog = mResourceHelper.getColor(R.color.pumpkin);
+        String datepickerdialog = "Datepickerdialog";
+        String timepickerdialog = "Timepickerdialog";
         binding = DataBindResolverInstance.getBinding(ActivityMainBinding.class, coreDataBinding);
         binding.setCadastro(new User());
         User obj = new User();
-        obj.setNome(" ");
+        obj.setName(" ");
 
-        PushDownAnim.setPushDownAnimTo(binding.start)
-                .setOnClickListener(view ->
-                        mCorePresenter.receiveClick(binding.getCadastro().Nome, binding.getCadastro().Diainit, binding.getCadastro().Intervaloinit, binding.getCadastro().Intervaloend, binding.getCadastro().Diaend));
+        PushDownAnimHelper.createDefault(binding.start, v ->
+                mCorePresenter.receiveClick(new User(binding.getCadastro().name,
+                binding.getCadastro().startJourney,
+                binding.getCadastro().startInterval,
+                binding.getCadastro().endInterval,
+                binding.getCadastro().endJourney)));
+
+        binding.startJourney.setOnClickListener(v -> DateTimeDialogHelper.DatePickerDialogDefault(colorDialog,
+                (view, year, monthOfYear, dayOfMonth) -> binding.startJourney.setText(DateUtil.concatDayMonthYear(dayOfMonth,monthOfYear,year)))
+                .show(getFragmentManager(), datepickerdialog)
+        );
+
+        binding.endJourney.setOnClickListener(v -> DateTimeDialogHelper.DatePickerDialogDefault(colorDialog,
+                (view, year, monthOfYear, dayOfMonth) -> binding.endJourney.setText(DateUtil.concatDayMonthYear(dayOfMonth, monthOfYear, year)))
+                .show(getFragmentManager(), datepickerdialog)
+        );
+
+        binding.endInterval.setOnClickListener(v -> DateTimeDialogHelper.showTimePickerDialogDefault(colorDialog,
+                (view, hourOfDay, minute, second) -> binding.endInterval.setText(DateUtil.concatHourMinuteSecond(hourOfDay,minute,0)))
+                .show(getFragmentManager(), timepickerdialog)
+        );
+
+        binding.startInterval.setOnClickListener(v -> DateTimeDialogHelper.showTimePickerDialogDefault(colorDialog,
+                (view, hourOfDay, minute, second) -> binding.startInterval.setText(DateUtil.concatHourMinuteSecond(hourOfDay,minute,0)))
+                .show(getFragmentManager(), timepickerdialog)
+        );
+
     }
-}
 
+}
