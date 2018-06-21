@@ -20,23 +20,15 @@ public class UserLocalDataSourceImpl implements UserLocalDataSource{
 
     @Override
     public void saveUser(UserDto user, DataCompleteResponse response) {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
+        new Thread(() -> {
 
-                try {
-                    Thread.sleep(5000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-
-                new Handler(Looper.getMainLooper()).post(new Runnable() {
-                    @Override
-                    public void run() {
-                        response.onComplete();
-                    }
-                });
+            try {
+                Thread.sleep(5000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
+
+            new Handler(Looper.getMainLooper()).post(() -> response.onComplete());
         }).start();
     }
 }

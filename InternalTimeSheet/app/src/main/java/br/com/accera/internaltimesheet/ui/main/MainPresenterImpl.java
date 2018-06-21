@@ -4,7 +4,6 @@ import android.text.TextUtils;
 
 import javax.inject.Inject;
 
-import br.com.accera.callback.DataCompleteResponse;
 import br.com.accera.data.user.UserDto;
 import br.com.accera.data.user.UserRepository;
 import br.com.accera.internaltimesheet.R;
@@ -57,12 +56,9 @@ public class MainPresenterImpl extends BaseTimesheetPresenter<MainContract.View>
         userDto.setEndJourney(user.endJourney);
 
         mView.getAlertHelper().showLoading("Salvando usuario");
-        userRepository.saveUser(userDto, new DataCompleteResponse() {
-            @Override
-            public void onComplete() {
-                mView.getAlertHelper().hideLoading();
-                mFlowNavigator.goToLogin();
-            }
+        userRepository.saveUser(userDto, () -> {
+            mView.getAlertHelper().hideLoading();
+            mFlowNavigator.goToLogin();
         });
     }
 }
