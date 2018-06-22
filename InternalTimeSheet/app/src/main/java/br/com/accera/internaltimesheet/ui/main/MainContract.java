@@ -12,6 +12,7 @@ public interface MainContract {
     interface View extends BaseMvpContract.View{
 
         void cleanAllErrors();
+        void setCardVisibility();
     }
 
     interface Presenter extends BaseMvpContract.Presenter<MainContract.View>{

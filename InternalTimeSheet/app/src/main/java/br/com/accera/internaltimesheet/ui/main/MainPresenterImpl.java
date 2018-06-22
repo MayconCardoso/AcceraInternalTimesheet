@@ -61,4 +61,5 @@ public class MainPresenterImpl extends BaseTimesheetPresenter<MainContract.View>
             mFlowNavigator.goToLogin();
         });
     }
+
 }

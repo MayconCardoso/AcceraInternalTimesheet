@@ -120,4 +120,18 @@ public class User extends BaseObservable {
         this.pass2 = pass2;
         notifyPropertyChanged(BR.pass2);
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", startJourney='" + startJourney + '\'' +
+                ", endJourney='" + endJourney + '\'' +
+                ", startInterval='" + startInterval + '\'' +
+                ", endInterval='" + endInterval + '\'' +
+                ", user='" + user + '\'' +
+                ", pass='" + pass + '\'' +
+                ", pass2='" + pass2 + '\'' +
+                '}';
+    }
 }
