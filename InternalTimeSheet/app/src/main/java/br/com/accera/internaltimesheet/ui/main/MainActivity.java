@@ -5,10 +5,15 @@ import android.os.Bundle;
 
 import br.com.accera.core.presentation.ui.baseview.BaseActivity;
 import br.com.accera.internaltimesheet.R;
+import br.com.accera.internaltimesheet.databinding.ActivityMainBinding;
 
 public class MainActivity extends BaseActivity<MainContract.View, MainContract.Presenter> implements MainContract.View {
 
     //ActivityRegisterBinding binding;
+    //ActivityRegisterBinding binding;
+
+    ActivityMainBinding binding;
+
 
     @Override
     protected boolean hasToolbar() {
@@ -22,7 +27,7 @@ public class MainActivity extends BaseActivity<MainContract.View, MainContract.P
 
     @Override
     protected int getInflateView() {
-        return R.layout.activity_register;
+        return R.layout.activity_main;
     }
 
     @Override
