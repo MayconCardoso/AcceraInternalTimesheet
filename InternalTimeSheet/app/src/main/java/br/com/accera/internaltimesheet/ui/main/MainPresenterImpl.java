@@ -24,7 +24,7 @@ public class MainPresenterImpl extends BaseTimesheetPresenter<MainContract.View>
     }
 
 
-    public void receiveClick(User user){
+    public void firstStep(User user){
         mView.cleanAllErrors();
 
         if (TextUtils.isEmpty(user.name)){
@@ -45,6 +45,22 @@ public class MainPresenterImpl extends BaseTimesheetPresenter<MainContract.View>
         }
         if (TextUtils.isEmpty(user.endJourney)){
             mView.setErrorOnField(R.id.end_journey, mView.getResourceHelper().getString(R.string.no_journey_end));
+            return;
+        }
+        mView.showSecondCard();
+    }
+
+    @Override
+    public void secondStep(User user) {
+        mView.cleanAllErrors();
+
+        if (TextUtils.isEmpty(user.user)){
+            mView.setErrorOnField(R.id.email, "Insira um e-mail válido!");
+            return;
+        }
+        if (TextUtils.isEmpty(user.pass) && TextUtils.isEmpty(user.pass2)){
+            mView.setErrorOnField(R.id.password, "Senha inválida");
+            mView.setErrorOnField(R.id.password_two, "Senha inválida");
             return;
         }
 

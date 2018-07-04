@@ -16,7 +16,7 @@ import br.com.accera.internaltimesheet.ui.helpers.DateTimeDialogHelper;
 public class MainActivity extends BaseActivity<MainContract.View, MainContract.Presenter> implements MainContract.View {
 
     ActivityRegisterBinding binding;
-    private Boolean cardControl = true;
+    Boolean isSecondStep = false;
 
     @Override
     protected boolean hasToolbar() {
@@ -52,21 +52,21 @@ public class MainActivity extends BaseActivity<MainContract.View, MainContract.P
     }
 
     @Override
-    public void setCardVisibility() {
-        if (cardControl){
-            binding.firstCard.registerCard.setVisibility(View.GONE);
-            binding.secondCard.registerCard2.setVisibility(View.VISIBLE);
-            binding.firstButton.setVisibility(View.GONE);
-            binding.secondButton.setVisibility(View.VISIBLE);
-            cardControl = false;
-        } else {
-            binding.firstCard.registerCard.setVisibility(View.VISIBLE);
-            binding.secondCard.registerCard2.setVisibility(View.GONE);
-            binding.firstButton.setVisibility(View.VISIBLE);
-            binding.secondButton.setVisibility(View.GONE);
-            cardControl = true;
-        }
+    public void showSecondCard() {
+        binding.firstCard.registerCard.setVisibility(View.GONE);
+        binding.secondCard.registerCard2.setVisibility(View.VISIBLE);
+        binding.firstButton.setVisibility(View.GONE);
+        binding.secondButton.setVisibility(View.VISIBLE);
+        isSecondStep = true;
+    }
 
+    @Override
+    public void showFirstCard() {
+        binding.firstCard.registerCard.setVisibility(View.VISIBLE);
+        binding.secondCard.registerCard2.setVisibility(View.GONE);
+        binding.firstButton.setVisibility(View.VISIBLE);
+        binding.secondButton.setVisibility(View.GONE);
+        isSecondStep = false;
     }
 
     @Override
@@ -79,11 +79,9 @@ public class MainActivity extends BaseActivity<MainContract.View, MainContract.P
         User obj = new User();
         obj.setName(" ");
 
-        PushDownAnimHelper.createDefault(binding.secondButton, v ->
-                mCorePresenter.receiveClick(getUserRegister())
-        );
+        PushDownAnimHelper.createDefault(binding.secondButton, v -> mCorePresenter.secondStep(getUserRegister()));
 
-        PushDownAnimHelper.createDefault(binding.firstButton, v -> setCardVisibility());
+        PushDownAnimHelper.createDefault(binding.firstButton, v -> mCorePresenter.firstStep(getUserRegister()));
 
         binding.firstCard.startJourney.setOnClickListener(v -> DateTimeDialogHelper.DatePickerDialogDefault(colorDialog,
                 (view, year, monthOfYear, dayOfMonth) -> binding.firstCard.startJourney.setText(DateUtil.concatDayMonthYear(dayOfMonth,monthOfYear,year)))
@@ -104,6 +102,15 @@ public class MainActivity extends BaseActivity<MainContract.View, MainContract.P
                 (view, hourOfDay, minute, second) -> binding.firstCard.startInterval.setText(DateUtil.concatHourMinuteSecond(hourOfDay,minute,0)))
                 .show(getFragmentManager(), timepickerdialog)
         );
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (isSecondStep) {
+            showFirstCard();
+            return;
+        }
+        super.onBackPressed();
     }
 
     private User getUserRegister(){

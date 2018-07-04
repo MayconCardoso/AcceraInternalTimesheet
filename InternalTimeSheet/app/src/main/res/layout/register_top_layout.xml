@@ -41,21 +41,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/icon_app" />
 
-    <TextView
-        android:id="@+id/start_app_header"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="@string/basic_information"
-        android:textAlignment="center"
-        android:textColor="@color/mdtp_transparent_black"
-        android:textColorHint="@color/white"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/info_hour_bank" />
-
-
 
 </android.support.constraint.ConstraintLayout>
