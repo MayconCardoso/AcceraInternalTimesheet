@@ -2,6 +2,7 @@ package br.com.accera.internaltimesheet.nucleo;
 
 import com.crashlytics.android.Crashlytics;
 
+import br.com.accera.db.DbSessionHelper;
 import br.com.accera.internaltimesheet.di.components.ApplicationComponent;
 import br.com.accera.internaltimesheet.di.components.DaggerApplicationComponent;
 import dagger.android.AndroidInjector;
@@ -29,6 +30,7 @@ public class TimesheetApplication extends DaggerApplication {
         super.onCreate();
 
         Fabric.with(this, new Crashlytics());
+        DbSessionHelper.init(this);
     }
 
     @Override

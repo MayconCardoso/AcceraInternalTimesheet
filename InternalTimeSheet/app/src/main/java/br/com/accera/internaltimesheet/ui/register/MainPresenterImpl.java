@@ -1,14 +1,14 @@
-package br.com.accera.internaltimesheet.ui.main;
+package br.com.accera.internaltimesheet.ui.register;
 
 import android.text.TextUtils;
 
 import javax.inject.Inject;
 
-import br.com.accera.data.user.UserDto;
 import br.com.accera.data.user.UserRepository;
+import br.com.accera.data.user.entity.UserDto;
 import br.com.accera.internaltimesheet.R;
-import br.com.accera.internaltimesheet.User;
 import br.com.accera.internaltimesheet.ui.base.BaseTimesheetPresenter;
+import br.com.accera.internaltimesheet.ui.register.mapper.UserMapper;
 
 /**
  * Created by LuisAlmeida on 25/05/18.
@@ -26,6 +26,7 @@ public class MainPresenterImpl extends BaseTimesheetPresenter<MainContract.View>
 
     public void firstStep(User user){
         mView.cleanAllErrors();
+        getUser();
 
         if (TextUtils.isEmpty(user.name)){
             mView.setErrorOnField(R.id.name, mView.getResourceHelper().getString(R.string.no_name));
@@ -64,18 +65,22 @@ public class MainPresenterImpl extends BaseTimesheetPresenter<MainContract.View>
             return;
         }
 
-        UserDto userDto = new UserDto();
-        userDto.setName(user.name);
-        userDto.setStartJourney(user.startJourney);
-        userDto.setStartInterval(user.startInterval);
-        userDto.setEndInterval(user.endInterval);
-        userDto.setEndJourney(user.endJourney);
+        UserDto userDto = new UserMapper.ToUserDto().transform(user);
 
         mView.getAlertHelper().showLoading("Salvando usuario");
         userRepository.saveUser(userDto, () -> {
             mView.getAlertHelper().hideLoading();
             mFlowNavigator.goToLogin();
         });
+    }
+
+    @Override
+    public User getUser() {
+        UserDto user = userRepository.getUser(1L);
+        if (user != null){
+            return new UserMapper.FromUserDto().transform(user);
+        }
+        return new User();
     }
 
 }

@@ -1,4 +1,4 @@
-package br.com.accera.internaltimesheet.ui.main;
+package br.com.accera.internaltimesheet.ui.register;
 
 import android.databinding.ViewDataBinding;
 import android.os.Bundle;
@@ -8,7 +8,6 @@ import br.com.accera.core.presentation.ui.baseview.BaseActivity;
 import br.com.accera.core.presentation.utilities.DataBindResolverInstance;
 import br.com.accera.core.presentation.utilities.DateUtil;
 import br.com.accera.internaltimesheet.R;
-import br.com.accera.internaltimesheet.User;
 import br.com.accera.internaltimesheet.databinding.ActivityRegisterBinding;
 import br.com.accera.internaltimesheet.ui.animation.PushDownAnimHelper;
 import br.com.accera.internaltimesheet.ui.helpers.DateTimeDialogHelper;
@@ -75,9 +74,7 @@ public class MainActivity extends BaseActivity<MainContract.View, MainContract.P
         String datepickerdialog = "Datepickerdialog";
         String timepickerdialog = "Timepickerdialog";
         binding = DataBindResolverInstance.getBinding(ActivityRegisterBinding.class, coreDataBinding);
-        binding.setCadastro(new User());
-        User obj = new User();
-        obj.setName(" ");
+        binding.setCadastro(mCorePresenter.getUser());
 
         PushDownAnimHelper.createDefault(binding.secondButton, v -> mCorePresenter.secondStep(getUserRegister()));
 

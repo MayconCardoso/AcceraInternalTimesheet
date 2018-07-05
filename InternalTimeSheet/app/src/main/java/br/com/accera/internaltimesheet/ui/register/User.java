@@ -1,7 +1,9 @@
-package br.com.accera.internaltimesheet;
+package br.com.accera.internaltimesheet.ui.register;
 
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
+
+import br.com.accera.internaltimesheet.BR;
 
 /**
  * Created by fobalan on 23/05/18.

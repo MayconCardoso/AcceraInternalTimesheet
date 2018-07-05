@@ -3,12 +3,12 @@
     xmlns:bind="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="br.com.accera.internaltimesheet.ui.main.MainActivity">
+    tools:context="br.com.accera.internaltimesheet.ui.register.MainActivity">
 
     <data>
         <variable
             name="cadastro"
-            type="br.com.accera.internaltimesheet.User" />
+            type="br.com.accera.internaltimesheet.ui.register.User" />
     </data>
 
     <android.support.constraint.ConstraintLayout

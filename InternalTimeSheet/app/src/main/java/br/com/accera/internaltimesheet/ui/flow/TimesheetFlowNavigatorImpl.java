@@ -8,7 +8,7 @@ import javax.inject.Named;
 
 import br.com.accera.internaltimesheet.ui.dashboard.DashboardActivity;
 import br.com.accera.internaltimesheet.ui.login.LoginActivity;
-import br.com.accera.internaltimesheet.ui.main.MainActivity;
+import br.com.accera.internaltimesheet.ui.register.MainActivity;
 
 /**
  * Created by fobalan on 24/05/18.

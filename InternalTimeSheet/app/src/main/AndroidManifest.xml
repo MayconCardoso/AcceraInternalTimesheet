@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/ic_app_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.main.MainActivity"></activity>
+        <activity android:name=".ui.register.MainActivity"></activity>
 
         <meta-data
             android:name="io.fabric.ApiKey"

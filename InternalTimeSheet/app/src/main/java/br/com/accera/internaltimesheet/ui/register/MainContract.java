@@ -1,7 +1,6 @@
-package br.com.accera.internaltimesheet.ui.main;
+package br.com.accera.internaltimesheet.ui.register;
 
 import br.com.accera.core.presentation.ui.baseview.BaseMvpContract;
-import br.com.accera.internaltimesheet.User;
 
 /**
  * Created by LuisAlmeida on 25/05/18.
@@ -19,5 +18,6 @@ public interface MainContract {
     interface Presenter extends BaseMvpContract.Presenter<MainContract.View>{
         void firstStep(User user);
         void secondStep(User user);
+        User getUser();
     }
 }

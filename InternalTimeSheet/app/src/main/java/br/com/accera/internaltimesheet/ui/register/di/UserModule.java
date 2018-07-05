@@ -1,4 +1,4 @@
-package br.com.accera.internaltimesheet.ui.main.di;
+package br.com.accera.internaltimesheet.ui.register.di;
 
 import br.com.accera.core.presentation.di.scope.ViewScope;
 import br.com.accera.data.user.UserRepository;
@@ -7,7 +7,6 @@ import br.com.accera.data.user.datasource.local.UserLocalDataSource;
 import br.com.accera.data.user.datasource.local.UserLocalDataSourceImpl;
 import dagger.Binds;
 import dagger.Module;
-import dagger.Provides;
 
 /**
  * Created by LuisAlmeida on 28/05/18.
