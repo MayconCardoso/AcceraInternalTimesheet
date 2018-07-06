@@ -26,5 +26,11 @@
     <string name="no_interval_end">Insira o horário de fim da jornada!</string>
     <string name="login">Login</string>
     <string name="register">Cadastro</string>
+    <string name="start_journey">Inicio da Jornada</string>
+    <string name="email">E-mail</string>
+    <string name="password">Senha</string>
+    <string name="password2">Repetir Senha</string>
+    <string name="next_step">Próxima Etapa</string>
+
 
 </resources>

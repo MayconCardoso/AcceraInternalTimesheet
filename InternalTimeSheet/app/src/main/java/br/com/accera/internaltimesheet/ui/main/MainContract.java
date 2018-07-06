@@ -10,8 +10,14 @@ import br.com.accera.internaltimesheet.User;
 public interface MainContract {
 
     interface View extends BaseMvpContract.View{
-
         void cleanAllErrors();
+        void showSecondCard();
+        void showFirstCard();
+    }
+
+    interface Presenter extends BaseMvpContract.Presenter<MainContract.View>{
+        void firstStep(User user);
+        void secondStep(User user);
     }
 
     interface Presenter extends BaseMvpContract.Presenter<MainContract.View>{

@@ -25,7 +25,7 @@ public class MainPresenterImpl extends BaseTimesheetPresenter<MainContract.View>
     }
 
 
-    public void receiveClick(User user){
+    public void firstStep(User user){
         mView.cleanAllErrors();
 
         if (TextUtils.isEmpty(user.name)){
@@ -48,7 +48,7 @@ public class MainPresenterImpl extends BaseTimesheetPresenter<MainContract.View>
             mView.setErrorOnField(R.id.end_journey, mView.getResourceHelper().getString(R.string.no_journey_end));
             return;
         }
-
+        mView.showSecondCard();
         UserDto userDto = new UserDto();
         userDto.setName(user.name);
         userDto.setStartJourney(user.startJourney);
@@ -65,4 +65,33 @@ public class MainPresenterImpl extends BaseTimesheetPresenter<MainContract.View>
             }
         });
     }
+
+    @Override
+    public void secondStep(User user) {
+        mView.cleanAllErrors();
+
+        if (TextUtils.isEmpty(user.user)){
+            mView.setErrorOnField(R.id.email, "Insira um e-mail válido!");
+            return;
+        }
+        if (TextUtils.isEmpty(user.pass) && TextUtils.isEmpty(user.pass2)){
+            mView.setErrorOnField(R.id.password, "Senha inválida");
+            mView.setErrorOnField(R.id.password_two, "Senha inválida");
+            return;
+        }
+
+        UserDto userDto = new UserDto();
+        userDto.setName(user.name);
+        userDto.setStartJourney(user.startJourney);
+        userDto.setStartInterval(user.startInterval);
+        userDto.setEndInterval(user.endInterval);
+        userDto.setEndJourney(user.endJourney);
+
+        mView.getAlertHelper().showLoading("Salvando usuario");
+        userRepository.saveUser(userDto, () -> {
+            mView.getAlertHelper().hideLoading();
+            mFlowNavigator.goToLogin();
+        });
+    }
+
 }

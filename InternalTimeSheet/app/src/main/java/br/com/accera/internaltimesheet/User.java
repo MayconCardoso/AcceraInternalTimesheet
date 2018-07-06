@@ -14,6 +14,10 @@ public class User extends BaseObservable {
     public String endJourney;
     public String startInterval;
     public String endInterval;
+    public String user;
+    public String pass;
+    public String pass2;
+
 
     public User() {
 
@@ -26,6 +30,17 @@ public class User extends BaseObservable {
         this.startInterval = startInterval;
         this.endInterval = endInterval;
     }
+
+//    public User(String name, String startJourney, String endJourney, String startInterval, String endInterval, String user, String pass, String pass2) {
+//        this.name = name;
+//        this.startJourney = startJourney;
+//        this.endJourney = endJourney;
+//        this.startInterval = startInterval;
+//        this.endInterval = endInterval;
+//        this.user = user;
+//        this.pass = pass;
+//        this.pass2 = pass2;
+//    }
 
     @Bindable
     public String getName() {
@@ -53,12 +68,6 @@ public class User extends BaseObservable {
         return endJourney;
     }
 
-    @Bindable
-    public void setEndJourney(String endJourney) {
-        this.endJourney = endJourney;
-        notifyPropertyChanged(BR.endJourney);
-    }
-
     public String getStartInterval() {
         return startInterval;
     }
@@ -77,5 +86,47 @@ public class User extends BaseObservable {
     public void setEndInterval(String endInterval) {
         this.endInterval = endInterval;
         notifyPropertyChanged(BR.endInterval);
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    @Bindable
+    public void setUser(String user) {
+        this.user = user;
+        notifyPropertyChanged(BR.user);
+    }
+
+    public String getPass() {
+        return pass;
+    }
+    @Bindable
+    public void setPass(String pass) {
+        this.pass = pass;
+        notifyPropertyChanged(BR.pass);
+    }
+
+    public String getPass2() {
+        return pass2;
+    }
+    @Bindable
+    public void setPass2(String pass2) {
+        this.pass2 = pass2;
+        notifyPropertyChanged(BR.pass2);
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", startJourney='" + startJourney + '\'' +
+                ", endJourney='" + endJourney + '\'' +
+                ", startInterval='" + startInterval + '\'' +
+                ", endInterval='" + endInterval + '\'' +
+                ", user='" + user + '\'' +
+                ", pass='" + pass + '\'' +
+                ", pass2='" + pass2 + '\'' +
+                '}';
     }
 }

@@ -2,7 +2,6 @@
 <layout>
 
     <data>
-
         <variable
             name="cadastro"
             type="br.com.accera.internaltimesheet.User" />
@@ -15,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
-        tools:context="br.com.accera.internaltimesheet.ui.main.MainActivity">
+        >
 
 
         <LinearLayout
