@@ -18,6 +18,7 @@ public class User extends BaseObservable {
     public String pass;
     public String pass2;
 
+
     public User() {
 
     }
@@ -65,12 +66,6 @@ public class User extends BaseObservable {
 
     public String getEndJourney() {
         return endJourney;
-    }
-
-    @Bindable
-    public void setEndJourney(String endJourney) {
-        this.endJourney = endJourney;
-        notifyPropertyChanged(BR.endJourney);
     }
 
     public String getStartInterval() {

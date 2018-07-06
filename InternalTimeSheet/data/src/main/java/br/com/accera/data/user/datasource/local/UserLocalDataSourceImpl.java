@@ -20,6 +20,7 @@ public class UserLocalDataSourceImpl implements UserLocalDataSource{
 
     @Override
     public void saveUser(UserDto user, DataCompleteResponse response) {
+
         new Thread(() -> {
 
             try {

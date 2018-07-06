@@ -3,7 +3,6 @@ package br.com.accera.internaltimesheet.ui.main;
 import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 import android.view.View;
-
 import br.com.accera.core.presentation.ui.baseview.BaseActivity;
 import br.com.accera.core.presentation.utilities.DataBindResolverInstance;
 import br.com.accera.core.presentation.utilities.DateUtil;
@@ -80,7 +79,6 @@ public class MainActivity extends BaseActivity<MainContract.View, MainContract.P
         obj.setName(" ");
 
         PushDownAnimHelper.createDefault(binding.secondButton, v -> mCorePresenter.secondStep(getUserRegister()));
-
         PushDownAnimHelper.createDefault(binding.firstButton, v -> mCorePresenter.firstStep(getUserRegister()));
 
         binding.firstCard.startJourney.setOnClickListener(v -> DateTimeDialogHelper.DatePickerDialogDefault(colorDialog,
@@ -115,6 +113,33 @@ public class MainActivity extends BaseActivity<MainContract.View, MainContract.P
 
     private User getUserRegister(){
         return binding.getCadastro();
+
+        PushDownAnimHelper.createDefault(binding.start, v ->
+                mCorePresenter.receiveClick(new User(binding.getCadastro().name,
+                binding.getCadastro().startJourney,
+                binding.getCadastro().startInterval,
+                binding.getCadastro().endInterval,
+                binding.getCadastro().endJourney)));
+
+        binding.startJourney.setOnClickListener(v -> DateTimeDialogHelper.DatePickerDialogDefault(colorDialog,
+                (view, year, monthOfYear, dayOfMonth) -> binding.startJourney.setText(DateUtil.concatDayMonthYear(dayOfMonth,monthOfYear,year)))
+                .show(getFragmentManager(), datepickerdialog)
+        );
+
+        binding.endJourney.setOnClickListener(v -> DateTimeDialogHelper.DatePickerDialogDefault(colorDialog,
+                (view, year, monthOfYear, dayOfMonth) -> binding.endJourney.setText(DateUtil.concatDayMonthYear(dayOfMonth, monthOfYear, year)))
+                .show(getFragmentManager(), datepickerdialog)
+        );
+
+        binding.endInterval.setOnClickListener(v -> DateTimeDialogHelper.showTimePickerDialogDefault(colorDialog,
+                (view, hourOfDay, minute, second) -> binding.endInterval.setText(DateUtil.concatHourMinuteSecond(hourOfDay,minute,0)))
+                .show(getFragmentManager(), timepickerdialog)
+        );
+
+        binding.startInterval.setOnClickListener(v -> DateTimeDialogHelper.showTimePickerDialogDefault(colorDialog,
+                (view, hourOfDay, minute, second) -> binding.startInterval.setText(DateUtil.concatHourMinuteSecond(hourOfDay,minute,0)))
+                .show(getFragmentManager(), timepickerdialog)
+        );
     }
 
 }
