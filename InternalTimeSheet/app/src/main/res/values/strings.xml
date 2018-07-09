@@ -25,7 +25,7 @@
     <string name="no_interval_init">Insira o horário de inicio da jornada!</string>
     <string name="no_interval_end">Insira o horário de fim da jornada!</string>
     <string name="login">Login</string>
-    <string name="register">Cadastro</string>
+    <string name="register">Cadastrar</string>
     <string name="start_journey">Inicio da Jornada</string>
     <string name="email">E-mail</string>
     <string name="password">Senha</string>
@@ -39,5 +39,10 @@
     <string name="third_option_title">Relatório</string>
     <string name="third_option">Extrair relatório mensal</string>
     <string name="login_title">Internal Time Sheet</string>
+    <string name="email_error">Email não informado</string>
+    <string name="email_error2">Email inválido</string>
+    <string name="password_error">Senha não informada</string>
+    <string name="password_error2">Senha diferente</string>
+    <string name="back">Voltar</string>
 
 </resources>

@@ -46,6 +46,8 @@ dependencies {
     implementation globalDependencies.greenDao
     implementation globalDependencies.greenDaoEncrypt
     implementation globalDependencies.generatorGreenDao
+    //Firebase
+    implementation globalDependencies.firebaseAuth
 
     implementation project(':core')
 }
