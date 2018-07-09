@@ -14,12 +14,12 @@ import br.com.accera.internaltimesheet.ui.register.mapper.UserMapper;
  * Created by LuisAlmeida on 25/05/18.
  */
 
-public class MainPresenterImpl extends BaseTimesheetPresenter<MainContract.View> implements MainContract.Presenter{
+public class RegisterPresenterImpl extends BaseTimesheetPresenter<RegisterContract.View> implements RegisterContract.Presenter{
 
     private UserRepository userRepository;
 
     @Inject
-    public MainPresenterImpl(UserRepository userRepository) {
+    public RegisterPresenterImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 

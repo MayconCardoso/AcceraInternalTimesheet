@@ -12,7 +12,7 @@ import br.com.accera.internaltimesheet.databinding.ActivityRegisterBinding;
 import br.com.accera.internaltimesheet.ui.animation.PushDownAnimHelper;
 import br.com.accera.internaltimesheet.ui.helpers.DateTimeDialogHelper;
 
-public class MainActivity extends BaseActivity<MainContract.View, MainContract.Presenter> implements MainContract.View {
+public class RegisterActivity extends BaseActivity<RegisterContract.View, RegisterContract.Presenter> implements RegisterContract.View {
 
     ActivityRegisterBinding binding;
     Boolean isSecondStep = false;
@@ -23,7 +23,7 @@ public class MainActivity extends BaseActivity<MainContract.View, MainContract.P
     }
 
     @Override
-    protected MainContract.View getContractView() {
+    protected RegisterContract.View getContractView() {
         return this;
     }
 

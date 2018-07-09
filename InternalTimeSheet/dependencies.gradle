@@ -19,6 +19,12 @@ ext {
     // DB
     GREEN_DAO                               = '3.2.2'
     GREEN_DAO_ENCRYPT                       = '3.5.6'
+    //Firebase
+    FB_CORE                                 = '16.0.1'
+    FB_AUTH                                 = '16.0.2'
+    FB_DATABASE                             = '16.0.1'
+    FB_STORAGE                              = '16.0.1'
+
 
 
     //==============================================================================================
@@ -72,6 +78,14 @@ ext {
             greenDao                        : "org.greenrobot:greendao:${GREEN_DAO}",
             generatorGreenDao               : "org.greenrobot:greendao-generator:${GREEN_DAO}",
             greenDaoEncrypt                 : "net.zetetic:android-database-sqlcipher:${GREEN_DAO_ENCRYPT}",
+
+            //Firabase
+            firebaseCore                    : "com.google.firebase:firebase-core:${FB_CORE}",
+            firebaseAuth                    : "com.google.firebase:firebase-auth:${FB_AUTH}",
+            firebaseDatabase                : "com.google.firebase:firebase-database:${FB_DATABASE}",
+            firebaseStorage                 : "com.google.firebase:firebase-storage:${FB_STORAGE}",
+
+
 
     ]
     //==============================================================================================

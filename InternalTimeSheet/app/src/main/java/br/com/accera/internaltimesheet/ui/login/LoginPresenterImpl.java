@@ -15,7 +15,7 @@ public class LoginPresenterImpl extends BaseTimesheetPresenter<LoginContract.Vie
 
     @Override
     public void receiveClickLogin() {
-        mFlowNavigator.goToDashboard();
+        mFlowNavigator.goToMenu();
     }
 
     @Override

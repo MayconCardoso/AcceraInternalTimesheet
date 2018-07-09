@@ -48,7 +48,7 @@ android {
 //
 //
 //==============================================================================================
-// Dependences
+// Dependencies
 //==============================================================================================
 dependencies {
     implementation project(':core')
@@ -76,5 +76,10 @@ dependencies {
     androidTestImplementation globalTestDependencies.supportRunner
     androidTestImplementation globalTestDependencies.supportEspresso
     implementation project(':data')
+    //Firebase
+    implementation globalDependencies.firebaseCore
+    implementation globalDependencies.firebaseAuth
+    implementation globalDependencies.firebaseDatabase
+    implementation globalDependencies.firebaseStorage
 }
 apply plugin: 'com.google.gms.google-services'

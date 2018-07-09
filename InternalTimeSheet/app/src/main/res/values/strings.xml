@@ -31,5 +31,13 @@
     <string name="password">Senha</string>
     <string name="password2">Repetir Senha</string>
     <string name="next_step">Próxima Etapa</string>
+    <string name="title_activity_menu">MenuActivity</string>
+    <string name="first_option">Informar horário de entrada e saída</string>
+    <string name="first_option_title">Relógio Ponto</string>
+    <string name="second_option_title">Perfil</string>
+    <string name="second_option">Editar informações do usuário</string>
+    <string name="third_option_title">Relatório</string>
+    <string name="third_option">Extrair relatório mensal</string>
+    <string name="login_title">Internal Time Sheet</string>
 
 </resources>
