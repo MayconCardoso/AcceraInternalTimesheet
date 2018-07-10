@@ -5,9 +5,11 @@ import br.com.accera.internaltimesheet.ui.dashboard.DashboardActivity;
 import br.com.accera.internaltimesheet.ui.dashboard.di.DashboardModule;
 import br.com.accera.internaltimesheet.ui.login.LoginActivity;
 import br.com.accera.internaltimesheet.ui.login.di.LoginModule;
-import br.com.accera.internaltimesheet.ui.main.MainActivity;
-import br.com.accera.internaltimesheet.ui.main.di.MainModule;
-import br.com.accera.internaltimesheet.ui.main.di.UserModule;
+import br.com.accera.internaltimesheet.ui.menu.MenuActivity;
+import br.com.accera.internaltimesheet.ui.menu.di.MenuModule;
+import br.com.accera.internaltimesheet.ui.register.RegisterActivity;
+import br.com.accera.internaltimesheet.ui.register.di.RegisterModule;
+import br.com.accera.internaltimesheet.ui.register.di.UserModule;
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
 
@@ -21,10 +23,15 @@ public abstract class ActivityBuilder {
     abstract DashboardActivity bindDashboardActivity();
 
     @ViewScope
-    @ContributesAndroidInjector(modules = {MainModule.class, UserModule.class, ViewModule.class})
-    abstract MainActivity bindMainActivity();
+    @ContributesAndroidInjector(modules = {RegisterModule.class, UserModule.class, ViewModule.class})
+    abstract RegisterActivity bindMainActivity();
 
     @ViewScope
     @ContributesAndroidInjector(modules = {LoginModule.class, ViewModule.class})
     abstract LoginActivity bindLoginActivity();
+
+    @ViewScope
+    @ContributesAndroidInjector(modules = {MenuModule.class, ViewModule.class})
+    abstract MenuActivity bindMenuActivity();
+
 }

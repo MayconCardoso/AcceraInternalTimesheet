@@ -1,18 +1,18 @@
-package br.com.accera.internaltimesheet.ui.main;
+package br.com.accera.internaltimesheet.ui.register;
 
 import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 import android.view.View;
+
 import br.com.accera.core.presentation.ui.baseview.BaseActivity;
 import br.com.accera.core.presentation.utilities.DataBindResolverInstance;
 import br.com.accera.core.presentation.utilities.DateUtil;
 import br.com.accera.internaltimesheet.R;
-import br.com.accera.internaltimesheet.User;
 import br.com.accera.internaltimesheet.databinding.ActivityRegisterBinding;
 import br.com.accera.internaltimesheet.ui.animation.PushDownAnimHelper;
 import br.com.accera.internaltimesheet.ui.helpers.DateTimeDialogHelper;
 
-public class MainActivity extends BaseActivity<MainContract.View, MainContract.Presenter> implements MainContract.View {
+public class RegisterActivity extends BaseActivity<RegisterContract.View, RegisterContract.Presenter> implements RegisterContract.View {
 
     ActivityRegisterBinding binding;
     Boolean isSecondStep = false;
@@ -23,7 +23,7 @@ public class MainActivity extends BaseActivity<MainContract.View, MainContract.P
     }
 
     @Override
-    protected MainContract.View getContractView() {
+    protected RegisterContract.View getContractView() {
         return this;
     }
 
@@ -74,11 +74,10 @@ public class MainActivity extends BaseActivity<MainContract.View, MainContract.P
         String datepickerdialog = "Datepickerdialog";
         String timepickerdialog = "Timepickerdialog";
         binding = DataBindResolverInstance.getBinding(ActivityRegisterBinding.class, coreDataBinding);
-        binding.setCadastro(new User());
-        User obj = new User();
-        obj.setName(" ");
+        binding.setCadastro(mCorePresenter.getUser());
 
         PushDownAnimHelper.createDefault(binding.secondButton, v -> mCorePresenter.secondStep(getUserRegister()));
+
         PushDownAnimHelper.createDefault(binding.firstButton, v -> mCorePresenter.firstStep(getUserRegister()));
 
         binding.firstCard.startJourney.setOnClickListener(v -> DateTimeDialogHelper.DatePickerDialogDefault(colorDialog,
@@ -113,33 +112,6 @@ public class MainActivity extends BaseActivity<MainContract.View, MainContract.P
 
     private User getUserRegister(){
         return binding.getCadastro();
-
-        PushDownAnimHelper.createDefault(binding.start, v ->
-                mCorePresenter.receiveClick(new User(binding.getCadastro().name,
-                binding.getCadastro().startJourney,
-                binding.getCadastro().startInterval,
-                binding.getCadastro().endInterval,
-                binding.getCadastro().endJourney)));
-
-        binding.startJourney.setOnClickListener(v -> DateTimeDialogHelper.DatePickerDialogDefault(colorDialog,
-                (view, year, monthOfYear, dayOfMonth) -> binding.startJourney.setText(DateUtil.concatDayMonthYear(dayOfMonth,monthOfYear,year)))
-                .show(getFragmentManager(), datepickerdialog)
-        );
-
-        binding.endJourney.setOnClickListener(v -> DateTimeDialogHelper.DatePickerDialogDefault(colorDialog,
-                (view, year, monthOfYear, dayOfMonth) -> binding.endJourney.setText(DateUtil.concatDayMonthYear(dayOfMonth, monthOfYear, year)))
-                .show(getFragmentManager(), datepickerdialog)
-        );
-
-        binding.endInterval.setOnClickListener(v -> DateTimeDialogHelper.showTimePickerDialogDefault(colorDialog,
-                (view, hourOfDay, minute, second) -> binding.endInterval.setText(DateUtil.concatHourMinuteSecond(hourOfDay,minute,0)))
-                .show(getFragmentManager(), timepickerdialog)
-        );
-
-        binding.startInterval.setOnClickListener(v -> DateTimeDialogHelper.showTimePickerDialogDefault(colorDialog,
-                (view, hourOfDay, minute, second) -> binding.startInterval.setText(DateUtil.concatHourMinuteSecond(hourOfDay,minute,0)))
-                .show(getFragmentManager(), timepickerdialog)
-        );
     }
 
 }

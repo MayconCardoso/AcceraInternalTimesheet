@@ -7,7 +7,7 @@
     <data>
         <variable
             name="reg"
-            type="br.com.accera.internaltimesheet.User" />
+            type="br.com.accera.internaltimesheet.ui.register.User" />
     </data>
 
     <android.support.v7.widget.CardView

@@ -3,6 +3,7 @@ package br.com.accera.internaltimesheet.di.components;
 import br.com.accera.core.presentation.di.scope.ApplicationScope;
 import br.com.accera.internaltimesheet.di.modules.ActivityBuilder;
 import br.com.accera.internaltimesheet.di.modules.ApplicationModule;
+import br.com.accera.internaltimesheet.di.modules.FirebaseModule;
 import br.com.accera.internaltimesheet.nucleo.TimesheetApplication;
 import dagger.Component;
 import dagger.android.AndroidInjector;
@@ -13,7 +14,8 @@ import dagger.android.support.AndroidSupportInjectionModule;
         modules = {
                 ApplicationModule.class,
                 AndroidSupportInjectionModule.class,
-                ActivityBuilder.class
+                ActivityBuilder.class,
+                FirebaseModule.class
         } )
 public interface ApplicationComponent extends AndroidInjector<TimesheetApplication> {
     @Component.Builder

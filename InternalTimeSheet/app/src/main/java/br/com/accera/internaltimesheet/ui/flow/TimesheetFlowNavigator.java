@@ -8,6 +8,7 @@ import br.com.accera.core.presentation.flow.FlowNavigator;
 
 public interface TimesheetFlowNavigator extends FlowNavigator{
 
+    void goToMenu();
     void goToDashboard();
     void goToRegister();
     void goToLogin();

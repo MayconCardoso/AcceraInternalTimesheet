@@ -4,7 +4,7 @@
     <data>
         <variable
             name="cadastro"
-            type="br.com.accera.internaltimesheet.User" />
+            type="br.com.accera.internaltimesheet.ui.register.User" />
     </data>
 
     <android.support.constraint.ConstraintLayout

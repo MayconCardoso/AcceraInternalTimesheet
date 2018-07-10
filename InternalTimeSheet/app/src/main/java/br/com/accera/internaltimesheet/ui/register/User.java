@@ -1,7 +1,9 @@
-package br.com.accera.internaltimesheet;
+package br.com.accera.internaltimesheet.ui.register;
 
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
+
+import br.com.accera.internaltimesheet.BR;
 
 /**
  * Created by fobalan on 23/05/18.
@@ -17,7 +19,6 @@ public class User extends BaseObservable {
     public String user;
     public String pass;
     public String pass2;
-
 
     public User() {
 
@@ -66,6 +67,12 @@ public class User extends BaseObservable {
 
     public String getEndJourney() {
         return endJourney;
+    }
+
+    @Bindable
+    public void setEndJourney(String endJourney) {
+        this.endJourney = endJourney;
+        notifyPropertyChanged(BR.endJourney);
     }
 
     public String getStartInterval() {
